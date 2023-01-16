@@ -9,6 +9,8 @@
     background-color: grey;
 }
 
+
+
 /* || Basic Calculator Structure: */
 
 #calculator-outer {
@@ -71,8 +73,41 @@
 /* || Button Structure: */
 
 #buttons-inner {
-    background-color: blue;
     margin: 5%;
     height: 100%;
     display: grid;
+    grid-template-columns: repeat(4, 22%);
+    column-gap: 4%;
+    row-gap: 5%;
+}
+
+/* * I've not used table / table-cell before but it seems a great way of centering vertically and horizontally */
+
+.button {
+    display: table;
+}
+
+.button-inner {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    background-color: rgb(203, 169, 174);
+    border-radius: 80%;
+    border: 0.05rem solid darkgrey;
+    color: rgb(99, 47, 64);
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+}
+
+.operator {
+    background-color: rgb(171, 118, 20);
+}
+
+.special {
+    background-color: rgb(206, 204, 201);
+}
+
+#btn-C {
+    background-color: rgb(141, 48, 39);
+    color: whitesmoke;
 }
