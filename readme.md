@@ -16,4 +16,6 @@ Lastly, with the relatively simple choice of project, I am hoping to practice wr
 - Buttons added: used grid to quickly add 20 buttons arranged 4x5, then used table/table-cell to horizontally and vertically centre buttons. Additional styling added such as drab calculator colours for buttons etc.      
 - Getting the screen to display: this now fills from the right like a calculator. I've set font size relative to VH with 13 seeming to be around the 'magic number'. Not sure if this is a great way of doing it but seemed to work nicely!     
 
+- I've now shifted onto the JS. Event listeners added for all buttons, I have decided to use each button's `.innerHTML` property in order to handle clicks.     
+- Display now updates when numeric buttons are pressed and wipes when equals is pressed.        
 

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- trying out script in the head + use async as this is a 'more modern' way (cf. at bottom of body) -->
+    <script src="/js/main.js" async></script>
 </head>
 <body>
     <div id="calculator-outer">
@@ -17,7 +19,7 @@
                 <div id="solar-panel"></div>
             </div>
             <div id="screen-inner">
-                <div id="screen-display">42</div>
+                <div id="screen-display"></div>
             </div>
         </div>
         <div class="flex-c color-grey" id="buttons-outer">
@@ -44,7 +46,7 @@
                     <div class="button-inner">9</div>
                 </div>
                 <div class="button">
-                    <div class="button-inner operator">X</div>
+                    <div class="button-inner operator">x</div>
                 </div>
                 <div class="button">
                     <div class="button-inner">4</div>
@@ -74,7 +76,7 @@
                     <div class="button-inner" id="btn-C">C</div>
                 </div>
                 <div class="button">
-                    <div class="button-inner">O</div>
+                    <div class="button-inner">0</div>
                 </div>
                 <div class="button">
                     <div class="button-inner special">.</div>
