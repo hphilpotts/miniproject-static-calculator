@@ -1,7 +1,17 @@
+/* || Generic styling: */
+
+.flex-c {
+    display: flex;
+    flex-direction: column;
+}
+
+.color-grey {
+    background-color: grey;
+}
+
+/* || Basic Calculator Structure: */
+
 #calculator-outer {
-    /* Colour */
-    /* TODO remove me */
-    background-color: aqua;
 
     /* Center align the calculator: */
     position: absolute;
@@ -9,7 +19,6 @@
     right: 0; 
     margin-left: auto; 
     margin-right: auto;
-
     margin-top: 5vh;
 
     /* Set width as a proportion of height w/ min values to prevent miniscule calculatini */
@@ -18,17 +27,52 @@
     min-width: 300px;
     min-height: 450px;
 
-    /* Flexbox */
-    display: flex;
-    flex-direction: column;
 }
 
 #screen-outer {
-    background-color: brown;
     height: 33.33%;
 }
 
+#screen-upper {
+    margin-top: 5%;
+    height: 50%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#logo {
+    width: 20%;
+    margin-left: 5%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    font-style: oblique;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 900;
+}
+
+#solar-panel {
+    background-color: rgb(50, 7, 3);
+    width: 40%;
+    margin-right: 15%;
+    color: aliceblue;
+}
+
+#screen-inner {
+    background-color: darkslategray;
+    margin: 5%;
+    height: 100%;
+}
+
 #buttons-outer {
-    background-color: chartreuse;
     height: 66.66%;
+}
+
+/* || Button Structure: */
+
+#buttons-inner {
+    background-color: blue;
+    margin: 5%;
+    height: 100%;
+    display: grid;
 }
