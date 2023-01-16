@@ -22,14 +22,32 @@ buttons.forEach(button => button.addEventListener('click', handleClick));
 
 // -- Processing button presses:
 
+const unaryOperators = ['+/-', '%', '√'];
+const binaryOperators = ['/', 'x', '-', '+', '.'];
+
 const processButtonPress = input => {
-    if (input.match(/[0-9]/)) numberPress(input);
-    if (input === '=') clearDisplay();
+    if (input.match(/[0-9]/)) numberPress(input); // numeric
+    if (unaryOperators.includes(input)) unaryOperatorPress(input); // unary operators
+    if (binaryOperators.includes(input)) binaryOperatorPress(input); // binary operators
+    if (input === '=') { // equals
+        clearDisplay();
+        display = ''; 
+    };
+    if (input === 'C') cancel(); // C
 }
 
 const numberPress = input => {
     display += input;
     setDisplay(display);
+};
+const unaryOperatorPress = input =>  console.log('unary operator pressed!', input);
+const binaryOperatorPress = input => console.log('binary operator pressed: ', input);
+const cancel = () => {
+    currentInput = 0;
+    previousInput = 0;
+    buttonPress = 0;
+    display = ''
+    clearDisplay();
 }
 
 
