@@ -18,4 +18,10 @@ Lastly, with the relatively simple choice of project, I am hoping to practice wr
 
 - I've now shifted onto the JS. Event listeners added for all buttons, I have decided to use each button's `.innerHTML` property in order to handle clicks.     
 - Display now updates when numeric buttons are pressed and wipes when equals is pressed.        
+- All button presses now handled by `processButtonPress`. Cancel function added. Some tweaks required where global variables needed to be changed - otherwise I was seeing values persisting even after '=' or 'C' were pressed.      
+- `processButtonPress` refactored into a switch statement :)        
+- Basic calculator functionality now added. Using loads of `console.log`s in order to keep track of how global variables are being changed!     
+
+## Bugs to resolve:     
+- Adjust screen display font size down from 13vh as screen size changes slightly.       
 
