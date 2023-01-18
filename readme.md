@@ -22,6 +22,9 @@ Lastly, with the relatively simple choice of project, I am hoping to practice wr
 - `processButtonPress` refactored into a switch statement :)        
 - Basic calculator functionality now added. Using loads of `console.log`s in order to keep track of how global variables are being changed!     
 
+17/01/23:       
+- I'm pretty happy with the basic functions for now, so I'm going to have a crack at hosting.
+
 ## Bugs to resolve:     
 - Adjust screen display font size down from 13vh as screen size changes slightly.       
 
