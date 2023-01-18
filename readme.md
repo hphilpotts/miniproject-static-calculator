@@ -22,6 +22,12 @@ Lastly, with the relatively simple choice of project, I am hoping to practice wr
 - `processButtonPress` refactored into a switch statement :)        
 - Basic calculator functionality now added. Using loads of `console.log`s in order to keep track of how global variables are being changed!     
 
+
+17/01/23:       
+- Now that I'm largely happy with basic functionality, I'm going to have a shot at deploying this. Took quite a few attempts to correctly place and then in turn locate the required .js file from my hphilpotts.github.io repo, as well as to choose the correct deployment.       
+- After a bit of trial end error, and with the use of a separate `deployment` branch, I have been able to get this hosted as a static site via GH Pages. Happy days!        
+- Only had a small amount of time to work on this today: the next jobs are to finish completing all functionalites, refactor code, and tweak formatting!        
+
 ## Bugs to resolve:     
 - Adjust screen display font size down from 13vh as screen size changes slightly.       
 
