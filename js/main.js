@@ -1,10 +1,11 @@
 // -- Let's set some variables:   
 
-let display = ''; // shows on the screen
-let buttonPress = null; // last button to be pressed
-let lastOperator = null;
-let currentInput = 0; // input being added
-let previousInput = 0; // previously added input
+let display = ''; // this is what shows on the screen
+let buttonPress = null; // last button to be pressed, get from element's inner html thru event listener, passed to handleButtonPress
+let lastOperator = null; // remember last operator presseed, used in evaluateInputs
+let currentInput = ''; // number currently being input into calculator (via multiple button presses)
+let previousInput = 0; // previously added input - get from currentInput when operator pressed, used in evaluateInput
+let lastResult = null; // saves the result from evaluateInput, used to allow immediate operator press after '='
     // ? would this be any different from display?
 
 const logGlobals = () => {
@@ -13,14 +14,15 @@ const logGlobals = () => {
     console.log('lastOperator: ' + lastOperator);
     console.log('currentInput: ' + currentInput);
     console.log('previousInput ' + previousInput);
+    console.log('lastResult' + lastResult);
     console.log('--');
 }
 
 const resetInputs = () => {
     buttonPress = null;
     lastOperator = null;
-    currentInput = 0;
-    previousInput = 0;
+    currentInput = null;
+    previousInput = null;
 }
 
 
@@ -80,6 +82,9 @@ const unaryOperatorPress = input =>  {
 const binaryOperatorPress = input => {
     lastOperator = input; // set operator based upon button pressed
 
+    // allows for operation on previously saved result (if next key press after `=` is a binary operator)
+    if (currentInput === null) currentInput = lastResult;
+    
     // move current input to previous input then reset to zero:
     previousInput = currentInput;
     currentInput = 0;
@@ -109,17 +114,22 @@ const cancel = () => {
 // -- Update display:
 const displayTarget = document.getElementById('screen-display');
 const setDisplay = value => {
-        if (value.length > 8) {
-            value = "Q_Q";
-        }
-        displayTarget.innerText = value;
-    }
+    // if statement stops large values from overlapping screen, instead showing silly face
+    if (value.length > 8) value = "Q_Q";
+    displayTarget.innerText = value;
+}
 const clearDisplay = () => displayTarget.innerText = '';
 
 // -- Math time:
 
 const evaluateInputs = (previous, current) => {
     let output = null;
+
+    // if there is no previous input, treat this as 0
+    if (!previousInput) {
+        previousInput = '0'
+    }
+
     const previousN = parseInt(previous);
     const currentN = parseInt(current); 
     switch (lastOperator) {
@@ -132,11 +142,20 @@ const evaluateInputs = (previous, current) => {
         case '+':
             output = previousN + currentN; break;
         case '.':
-            output = 'hmmm'
+            output = 'hmmm'; break
         default:
-            console.log('Error in evaluateInputs'); 
+            output = currentN; // if no operator pressed, saves current input to output
     }
     console.log('maths coming out = ', output)
+    console.log(output);
+    
+    if (!output) {
+        if (!lastResult) {
+            lastResult = 0;
+        }
+        output = lastResult;
+    }
+    lastResult = output;
     setDisplay(output.toString());
     display = '';
 }

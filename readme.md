@@ -29,7 +29,16 @@ Lastly, with the relatively simple choice of project, I am hoping to practice wr
 - Only had a small amount of time to work on this today: the next jobs are to finish completing all functionalites, refactor code, and tweak formatting!        
 
 19/01/23:       
-- Formatting updates: display `font-size` now `12vh`.
+- Formatting updates: display `font-size` now `12vh`. General formatting - updates to colours, shadows etc.     
+
+20/01/23:       
+- Changed display font, added update to `main.js` that prevents display from overlapping screen.        
+- Last result from `evaluateInputs` now saves into variable, allows user to operate on a result: e.g. pressing `2`, `+`, `2`, `=` to get `4` before then pressing `*`, `2`, `=` to get `8` as with a typical simple calculator.     
+- `NaN` coming through as `previousResult`, linked to issue where `null` remains in `previousInput`. I've not immediately been able to replicate this issue...! 
+- Also seeing error in `evaluateInputs` where no operator is passed in if no operator has been pressed. Simple `if (output)` statement before executing string method prevents errors but causes immediate use of operator following `=` misbehave. Ultimately fixed by changing error message in `default` case to instead save `currentInput` to output.              
+- If `=` is first button press, `NaN` comes through. Conditionals added either side of `switch` to handle different scenarios: behaviour now as normal.     
+
+
 
 ## Bugs to resolve:       
-
+- NaN coming through as `previousResult`, linked to issue where `null` remains in `previousInput`.      
