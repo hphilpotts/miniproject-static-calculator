@@ -42,13 +42,13 @@ buttons.forEach(button => button.addEventListener('click', handleClick));
 // -- Processing button presses:
 
 const unaryOperators = ['+/-', '%', '√'];
-const binaryOperators = ['/', 'x', '-', '+', '.'];
+const binaryOperators = ['/', 'x', '-', '+'];
 const numerics = new RegExp("[0-9]");
 
 const processButtonPress = input => {
     switch (true) {
-        case (numerics.test(input)):
-            numberPress(input);
+        case (numerics.test(input) || input === '.'):
+            numberPress(input); // decimal press can be used in the same way as a numeric press!
             break;
         case (unaryOperators.includes(input)):
             unaryOperatorPress(input);
@@ -77,6 +77,19 @@ const numberPress = input => {
 const unaryOperatorPress = input =>  {
     console.log('unary operator pressed!', input);
 
+    if (!currentInput) currentInput = lastResult;
+    console.log(currentInput);
+
+    switch (input) {
+        case '+/-': currentInput -= (currentInput * 2); break
+        case '%': currentInput = currentInput /100; break
+        case  '√': currentInput = Math.sqrt(currentInput); break
+    }
+    currentInput = currentInput.toFixed(4);
+    if (!currentInput) currentInput = 0;
+    setDisplay(currentInput.toString());
+    lastResult = currentInput;
+    logGlobals();
 }
 
 const binaryOperatorPress = input => {
@@ -91,6 +104,10 @@ const binaryOperatorPress = input => {
     display = '';
     clearDisplay();
     logGlobals();
+}
+
+const decimalPress = () => {
+
 }
 
 const equalsPress = () => {
@@ -130,8 +147,8 @@ const evaluateInputs = (previous, current) => {
         previousInput = '0'
     }
 
-    const previousN = parseInt(previous);
-    const currentN = parseInt(current); 
+    const previousN = parseFloat(previous);
+    const currentN = parseFloat(current); 
     switch (lastOperator) {
         case '/':
             output = previousN / currentN; break;
@@ -141,22 +158,35 @@ const evaluateInputs = (previous, current) => {
             output = previousN - currentN; break;
         case '+':
             output = previousN + currentN; break;
-        case '.':
-            output = 'hmmm'; break
         default:
             output = currentN; // if no operator pressed, saves current input to output
     }
-    console.log('maths coming out = ', output)
+    console.log('maths coming out = ', output.toFixed(4))
     console.log(output);
-    
+
     if (!output) {
         if (!lastResult) {
             lastResult = 0;
         }
         output = lastResult;
     }
+
     lastResult = output;
-    setDisplay(output.toString());
+
+    let stringyOutput = output.toString();
+
+    // trim trailing zeros in string to be displayed:
+    if (stringyOutput.includes('.')) {
+        stringyOutput = stringyOutput.slice(0, 8);
+        const trimDecimalZeros = (str) => {
+            if (str.endsWith('0')) {
+                str.slice(0, -1);
+                trimDecimalZeros(str);
+            }
+        }
+    }
+
+    setDisplay(stringyOutput);
     display = '';
 }
 

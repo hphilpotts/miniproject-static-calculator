@@ -37,8 +37,12 @@ Lastly, with the relatively simple choice of project, I am hoping to practice wr
 - `NaN` coming through as `previousResult`, linked to issue where `null` remains in `previousInput`. I've not immediately been able to replicate this issue...! 
 - Also seeing error in `evaluateInputs` where no operator is passed in if no operator has been pressed. Simple `if (output)` statement before executing string method prevents errors but causes immediate use of operator following `=` misbehave. Ultimately fixed by changing error message in `default` case to instead save `currentInput` to output.              
 - If `=` is first button press, `NaN` comes through. Conditionals added either side of `switch` to handle different scenarios: behaviour now as normal.     
+- Next steps: adding unary operators. These are now working, although I have started to see issues with floats - either in terms of very long strings displaying in the display, or where `evaluateInputs` produces integers rather than floats (due, of course, to the use of `parseInt()`). Addressed this second issue through the use of `parseFloat` and a `.slice` method on the display string.      
+- Further issue seen where use of unary operators as first input after `=` throws error. Now fixed, but issue seen where sqrt is used with a decimal: shows as `1`. This new issue fixed along with a slew of others seen - used `.toFixed` in both `evaluateInputs` and `unaryOperatorPress`.      
+- Last key functionality to add is `.` input. I've realised that I shoud take this out from `binaryOperatorPress` as this needs to be handled differently. A remarkably easy fix! This can in fact be handled through `numberPress`, easy peasy.        
+- Another small issue seen where excess zeros are showing on the display for decimals.
 
+## Bugs to resolve/features to add:       
+- Allow repeated presses of `=` to redo previous operation.     
+- Dark mode, obviously!     
 
-
-## Bugs to resolve:       
-- NaN coming through as `previousResult`, linked to issue where `null` remains in `previousInput`.      
