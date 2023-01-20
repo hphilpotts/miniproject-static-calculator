@@ -1,5 +1,9 @@
 # Miniproject: static webpage calculator        
 
+## [Deployment Link](https://hphilpotts.github.io/miniproject-static-calculator/)       
+
+<img src="img/screengrab.png" alt="screenshot of simple web calculator"/>
+
 ## Project Aim:       
 **Build a working calculator, hosted on a static webpage, using HTML, CSS and vanilla JS.**     
 
@@ -40,9 +44,14 @@ Lastly, with the relatively simple choice of project, I am hoping to practice wr
 - Next steps: adding unary operators. These are now working, although I have started to see issues with floats - either in terms of very long strings displaying in the display, or where `evaluateInputs` produces integers rather than floats (due, of course, to the use of `parseInt()`). Addressed this second issue through the use of `parseFloat` and a `.slice` method on the display string.      
 - Further issue seen where use of unary operators as first input after `=` throws error. Now fixed, but issue seen where sqrt is used with a decimal: shows as `1`. This new issue fixed along with a slew of others seen - used `.toFixed` in both `evaluateInputs` and `unaryOperatorPress`.      
 - Last key functionality to add is `.` input. I've realised that I shoud take this out from `binaryOperatorPress` as this needs to be handled differently. A remarkably easy fix! This can in fact be handled through `numberPress`, easy peasy.        
-- Another small issue seen where excess zeros are showing on the display for decimals.
+- Another small issue seen where excess zeros are showing on the display for decimals.      
+
+- I'm now going to refactor some of `main.js` before updating the deployed version.
 
 ## Bugs to resolve/features to add:       
 - Allow repeated presses of `=` to redo previous operation.     
+- Account for repeated operator presses.        
 - Dark mode, obviously!     
-
+- Some of the bigger functions need splitting up (looking at you, `evaluateInputs`...)      
+- Further formatting to improve appearance.     
+- Sounds?       

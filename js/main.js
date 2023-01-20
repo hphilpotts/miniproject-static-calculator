@@ -1,4 +1,4 @@
-// -- Let's set some variables:   
+// * -- Global variables and their uses:   
 
 let display = ''; // this is what shows on the screen
 let buttonPress = null; // last button to be pressed, get from element's inner html thru event listener, passed to handleButtonPress
@@ -6,31 +6,15 @@ let lastOperator = null; // remember last operator presseed, used in evaluateInp
 let currentInput = ''; // number currently being input into calculator (via multiple button presses)
 let previousInput = 0; // previously added input - get from currentInput when operator pressed, used in evaluateInput
 let lastResult = null; // saves the result from evaluateInput, used to allow immediate operator press after '='
-    // ? would this be any different from display?
 
-const logGlobals = () => {
-    console.log('display: ' + display);
-    console.log('buttonPress: ' + buttonPress);
-    console.log('lastOperator: ' + lastOperator);
-    console.log('currentInput: ' + currentInput);
-    console.log('previousInput ' + previousInput);
-    console.log('lastResult' + lastResult);
-    console.log('--');
-}
-
-const resetInputs = () => {
-    buttonPress = null;
-    lastOperator = null;
-    currentInput = null;
-    previousInput = null;
-}
+const resetInputs = () => buttonPress = null; lastOperator = null; currentInput = null; previousInput = null; // Used upon press of `=` or `C`:
 
 
-// -- Add event listeners w/click handler to all buttons:
+// * -- Add event listeners w/click handler to all buttons:
 
 const buttons = document.querySelectorAll(".button-inner");
 
-// Get button's innerHTML and then process accordingly (see -- Processing Button Presses)
+// Get button innerHTML and then process accordingly (see -- Processing Button Presses)
 function handleClick(){
     buttonPress = this.innerHTML;
     processButtonPress(buttonPress);
@@ -39,7 +23,7 @@ function handleClick(){
 buttons.forEach(button => button.addEventListener('click', handleClick));
 
 
-// -- Processing button presses:
+// * -- Processing button presses:
 
 const unaryOperators = ['+/-', '%', '√'];
 const binaryOperators = ['/', 'x', '-', '+'];
@@ -48,38 +32,29 @@ const numerics = new RegExp("[0-9]");
 const processButtonPress = input => {
     switch (true) {
         case (numerics.test(input) || input === '.'):
-            numberPress(input); // decimal press can be used in the same way as a numeric press!
-            break;
+            numberPress(input); break // decimal press can be used in the same way as a numeric press!
         case (unaryOperators.includes(input)):
-            unaryOperatorPress(input);
-            break;
+            unaryOperatorPress(input); break
         case (binaryOperators.includes(input)):
-            binaryOperatorPress(input);
-            break;
+            binaryOperatorPress(input); break
         case (input === '='):
-            equalsPress();
-            break;
+            equalsPress(); break
         case (input === 'C'):
-            cancel();
-            break;
+            cancel(); break
         default:
-            console.log(`I'm not sure how we got here...`);
+            console.log(`Error - I'm not sure how we got here...`);
     }
 };
 
 const numberPress = input => {
+    if (!currentInput) currentInput = 0; // occasionally null sneaks through... this is where TypeScript would be great
     display += input;
     currentInput += input;
     setDisplay(display);
-    logGlobals();
 };
 
 const unaryOperatorPress = input =>  {
-    console.log('unary operator pressed!', input);
-
     if (!currentInput) currentInput = lastResult;
-    console.log(currentInput);
-
     switch (input) {
         case '+/-': currentInput -= (currentInput * 2); break
         case '%': currentInput = currentInput /100; break
@@ -89,7 +64,6 @@ const unaryOperatorPress = input =>  {
     if (!currentInput) currentInput = 0;
     setDisplay(currentInput.toString());
     lastResult = currentInput;
-    logGlobals();
 }
 
 const binaryOperatorPress = input => {
@@ -103,33 +77,24 @@ const binaryOperatorPress = input => {
     currentInput = 0;
     display = '';
     clearDisplay();
-    logGlobals();
-}
-
-const decimalPress = () => {
-
 }
 
 const equalsPress = () => {
-    logGlobals();
     evaluateInputs(previousInput, currentInput); // here's where the mathgic happens
     resetInputs();
-    console.log('New values:')
-    logGlobals();
 }
 
 const cancel = () => {
-    currentInput = 0;
-    previousInput = 0;
-    buttonPress = null;
-    lastOperator = null;
+    currentInput = 0; previousInput = 0;
+    buttonPress = null; lastOperator = null;
     display = ''
     clearDisplay();
 }
 
 
-// -- Update display:
+// * -- Update display:
 const displayTarget = document.getElementById('screen-display');
+
 const setDisplay = value => {
     // if statement stops large values from overlapping screen, instead showing silly face
     if (value.length > 8) value = "Q_Q";
@@ -137,7 +102,7 @@ const setDisplay = value => {
 }
 const clearDisplay = () => displayTarget.innerText = '';
 
-// -- Math time:
+// * -- Math time:
 
 const evaluateInputs = (previous, current) => {
     let output = null;
@@ -161,13 +126,9 @@ const evaluateInputs = (previous, current) => {
         default:
             output = currentN; // if no operator pressed, saves current input to output
     }
-    console.log('maths coming out = ', output.toFixed(4))
-    console.log(output);
 
     if (!output) {
-        if (!lastResult) {
-            lastResult = 0;
-        }
+        if (!lastResult) lastResult = 0;
         output = lastResult;
     }
 
@@ -178,18 +139,17 @@ const evaluateInputs = (previous, current) => {
     // trim trailing zeros in string to be displayed:
     if (stringyOutput.includes('.')) {
         stringyOutput = stringyOutput.slice(0, 8);
+        
         const trimDecimalZeros = (str) => {
             if (str.endsWith('0')) {
                 str.slice(0, -1);
                 trimDecimalZeros(str);
             }
         }
+
+        trimDecimalZeros(stringyOutput);
     }
 
     setDisplay(stringyOutput);
     display = '';
 }
-
-// Testing, testing:
-// lastOperator = '+';
-// evaluateInputs
