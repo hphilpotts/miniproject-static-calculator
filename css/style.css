@@ -5,11 +5,6 @@
     flex-direction: column;
 }
 
-.color-grey {
-    background-color: grey;
-}
-
-
 
 /* || Basic Calculator Structure: */
 
@@ -29,6 +24,11 @@
     min-width: 300px;
     min-height: 450px;
 
+    box-shadow: 0.3em 0.5em 1em darkgray;
+    /* background-color: rgb(111, 109, 114); */
+    background: linear-gradient(#3e3e3e, #4a4a4a);
+    border-radius: 0.7em;
+
 }
 
 #screen-outer {
@@ -37,6 +37,7 @@
 
 #buttons-outer {
     height: 66.66%;
+    border-radius: 10%;
 }
 
 /* || Screen Structure/Styling: */
@@ -49,6 +50,8 @@
 }
 
 #logo {
+    color: rgb(203, 169, 174);
+    text-shadow: 0.2px 0.2px 0.5px white;
     width: 20%;
     margin-left: 5%;
     display: flex;
@@ -61,13 +64,17 @@
 
 #solar-panel {
     background-color: rgb(50, 7, 3);
+    box-shadow: 0 0 2px black;
+    border: 0.1em;
     width: 40%;
     margin-right: 15%;
     color: aliceblue;
 }
 
 #screen-inner {
-    background-color: darkslategray;
+    background-color: rgb(167, 162, 127);
+    box-shadow: 0 0 2px rgb(88, 87, 87);
+    border-radius: 0.2em;
     margin: 5%;
     height: 100%;
     display: flex;
@@ -75,13 +82,14 @@
 }
 
 #screen-display {
-    color: rgb(48, 47, 47);
+    color: rgb(50, 7, 3);
     height: 100%;
     display: flex;
     align-items: center;
-    font-size: 13vh;
+    font-family: 'Iceland', cursive;
+    font-size: 12vh;
         /* ? is this a botch or a hack? Seems to work nicely! */
-    font-family: 'Courier New', Courier, monospace;
+    /* font-family: 'Courier New', Courier, monospace; */
     margin-right: 5%;
 }
 
@@ -107,11 +115,12 @@
     vertical-align: middle;
     background-color: rgb(203, 169, 174);
     border-radius: 80%;
-    border: 0.05rem solid darkgrey;
+    /* border: 0.05rem solid rgb(56, 56, 56); */
     color: rgb(99, 47, 64);
     font-family: 'Courier New', Courier, monospace;
     font-weight: 600;
     font-size: x-large;
+    box-shadow: 0.05em 0.1em 0.03em rgb(134, 128, 128);
 }
 
 .operator {
