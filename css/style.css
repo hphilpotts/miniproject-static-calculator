@@ -86,9 +86,10 @@
     height: 100%;
     display: flex;
     align-items: center;
+    font-family: 'Iceland', cursive;
     font-size: 12vh;
         /* ? is this a botch or a hack? Seems to work nicely! */
-    font-family: 'Courier New', Courier, monospace;
+    /* font-family: 'Courier New', Courier, monospace; */
     margin-right: 5%;
 }
 
