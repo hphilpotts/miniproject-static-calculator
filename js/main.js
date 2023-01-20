@@ -108,7 +108,12 @@ const cancel = () => {
 
 // -- Update display:
 const displayTarget = document.getElementById('screen-display');
-const setDisplay = value => displayTarget.innerText = value;
+const setDisplay = value => {
+        if (value.length > 8) {
+            value = "Q_Q";
+        }
+        displayTarget.innerText = value;
+    }
 const clearDisplay = () => displayTarget.innerText = '';
 
 // -- Math time:
