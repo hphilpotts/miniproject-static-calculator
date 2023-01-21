@@ -53,10 +53,11 @@ _Two issues, fed back when progress shared_:
 - Width issue fixed (required scrolling on taller, thinner screens). Initially using max of `100vw` but later changed to specific `px` value.       
 - `previousInput` now persists on display after binary operator pressed (as with IRL calculator), changing once new number pressed.     
 
-
+- Now working on adding a dark mode. Currently have a new CSS stylesheet, this can of course be trimmed down. Adding JavaScript to handle this functionality.       
 
 ## Bugs to resolve/features to add:       
 - Allow repeated presses of `=` to redo previous operation.     
+- Allow consecutive operations before evaluation.       
 - Account for repeated operator presses.        
 - Dark mode, obviously!     
 - Some of the bigger functions need splitting up (looking at you, `evaluateInputs`...)      

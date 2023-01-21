@@ -18,6 +18,9 @@ const buttons = document.querySelectorAll(".button-inner");
 function handleClick(){
     buttonPress = this.innerHTML;
     processButtonPress(buttonPress);
+    console.log('Current Input:', currentInput);
+    console.log('Previous Input:', previousInput);
+    console.log('Last Result:', lastResult);
 };
 
 buttons.forEach(button => button.addEventListener('click', handleClick));
@@ -155,3 +158,15 @@ const evaluateInputs = (previous, current) => {
     setDisplay(stringyOutput);
     display = '';
 }
+
+// * -- Change Modes:
+
+const modeChangeButtons =  document.getElementsByClassName('control-button');
+
+function changeDisplayMode() {
+    if (StyleSheet === 'style.css') {
+        swapStyleSheet
+    }
+}
+
+modeChangeButtons.forEach(button => button.addEventListener('click', changeDisplayMode));
