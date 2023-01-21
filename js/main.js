@@ -47,7 +47,10 @@ const processButtonPress = input => {
 };
 
 const numberPress = input => {
-    if (!currentInput) currentInput = 0; // occasionally null sneaks through... this is where TypeScript would be great
+    if (!currentInput) {
+        clearDisplay(); // moved this here from binaryOperatorPress - will ensure prev input displays until new input added.
+        currentInput = 0; // occasionally null sneaks through... this is where TypeScript would be great
+    }
     display += input;
     currentInput += input;
     setDisplay(display);
@@ -76,7 +79,6 @@ const binaryOperatorPress = input => {
     previousInput = currentInput;
     currentInput = 0;
     display = '';
-    clearDisplay();
 }
 
 const equalsPress = () => {

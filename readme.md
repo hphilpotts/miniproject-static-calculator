@@ -46,7 +46,14 @@ Lastly, with the relatively simple choice of project, I am hoping to practice wr
 - Last key functionality to add is `.` input. I've realised that I shoud take this out from `binaryOperatorPress` as this needs to be handled differently. A remarkably easy fix! This can in fact be handled through `numberPress`, easy peasy.        
 - Another small issue seen where excess zeros are showing on the display for decimals.      
 
-- I'm now going to refactor some of `main.js` before updating the deployed version.
+- I'm now going to refactor some of `main.js` before updating the deployed version.         
+
+21/01/23:       
+_Two issues, fed back when progress shared_:      
+- Width issue fixed (required scrolling on taller, thinner screens). Initially using max of `100vw` but later changed to specific `px` value.       
+- `previousInput` now persists on display after binary operator pressed (as with IRL calculator), changing once new number pressed.     
+
+
 
 ## Bugs to resolve/features to add:       
 - Allow repeated presses of `=` to redo previous operation.     

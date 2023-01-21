@@ -23,6 +23,8 @@
     width: 60vh;
     min-width: 300px;
     min-height: 450px;
+    max-width: 412px;
+    max-height: 618px;
 
     box-shadow: 0.3em 0.5em 1em darkgray;
     /* background-color: rgb(111, 109, 114); */
