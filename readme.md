@@ -55,6 +55,11 @@ _Two issues, fed back when progress shared_:
 
 - Now working on adding a dark mode. Currently have a new CSS stylesheet, this can of course be trimmed down. Adding JavaScript to handle this functionality.       
 
+22/01/23:       
+- JS functionality added so that light / dark buttons now switch stylesheets. At the moment the entire stylesheet changes over, this could be sharpened up later on. Next step added!       
+- Buttons look garbage, next step will be styling these!        
+
+
 ## Bugs to resolve/features to add:       
 - Allow repeated presses of `=` to redo previous operation.     
 - Allow consecutive operations before evaluation.       
@@ -63,3 +68,4 @@ _Two issues, fed back when progress shared_:
 - Some of the bigger functions need splitting up (looking at you, `evaluateInputs`...)      
 - Further formatting to improve appearance.     
 - Sounds?       
+- Reduce duplicated CSS in dark/light mode // split into generic css and light/dark.        

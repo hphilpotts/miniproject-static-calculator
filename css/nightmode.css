@@ -143,3 +143,29 @@ body {
     box-shadow: 0.05em 0.1em 0.03em rgb(255, 96, 96);
 
 }
+
+/* || Control panel */
+
+#control-panel {
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+
+    width: 80%;
+    max-width: 350px;
+    height: 4vh;
+
+    position: absolute;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.control-button {
+    color: white;
+    background-color: aquamarine;
+    margin: 1%;
+    padding: 1%;
+    border-radius: 5%;
+}

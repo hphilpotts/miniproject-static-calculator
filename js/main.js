@@ -161,12 +161,18 @@ const evaluateInputs = (previous, current) => {
 
 // * -- Change Modes:
 
-const modeChangeButtons =  document.getElementsByClassName('control-button');
+const modeChangeButtons = document.getElementsByClassName('control-button');
+const styleSheet = document.getElementById('current-stylesheet');
+let currentStylesheet = styleSheet.getAttribute('href');
 
-function changeDisplayMode() {
-    if (StyleSheet === 'style.css') {
-        swapStyleSheet
-    }
-}
+// light mode:
+const setLightMode = () => styleSheet.setAttribute('href', 'css/style.css')
+modeChangeButtons[0].addEventListener('click', setLightMode);
 
-modeChangeButtons.forEach(button => button.addEventListener('click', changeDisplayMode));
+// dark mode:
+const setDarkMode = () => styleSheet.setAttribute('href', 'css/nightmode.css')
+modeChangeButtons[1].addEventListener('click', setDarkMode)
+
+// daft mode:
+const setDaftMode = () => console.log('Not yet added :(');
+modeChangeButtons[2].addEventListener('click', setDaftMode);
