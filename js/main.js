@@ -166,7 +166,7 @@ const styleSheet = document.getElementById('current-stylesheet');
 let currentStylesheet = styleSheet.getAttribute('href');
 
 // light mode:
-const setLightMode = () => styleSheet.setAttribute('href', 'css/style.css')
+const setLightMode = () => styleSheet.setAttribute('href', 'css/lightmode.css')
 modeChangeButtons[0].addEventListener('click', setLightMode);
 
 // dark mode:
