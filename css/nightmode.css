@@ -1,0 +1,50 @@
+/* || Dark Mode CSS */
+
+body {
+    background-color: black;
+}
+
+/* || Calculator Main Body Colours: */
+
+#calculator-outer {
+    box-shadow: 0 0 10em rgb(255, 96, 96);
+    /* background-color: rgb(111, 109, 114); */
+    background: linear-gradient(#3e3e3e, #4a4a4a);
+}
+
+/* || Screen Colours: */
+
+#logo {
+    color: rgb(0, 255, 0);
+}
+
+#screen-inner {
+    background-color: rgb(0, 255, 0);
+}
+
+#screen-display {
+    color: rgb(44, 44, 44);
+}
+
+/* || Button Colours: */
+
+.button-inner {
+    background-color:rgb(88, 87, 87);
+    color: rgb(0, 255, 0);
+    box-shadow: 0.05em 0.1em 0.15em rgb(0, 255, 0);
+}
+
+.operator {
+    background-color: rgb(44, 44, 44);
+}
+
+.special {
+    background-color: rgb(44, 44, 44);
+}
+
+#btn-C {
+    background-color: rgb(44, 44, 44);
+    color: rgb(255, 96, 96);
+    box-shadow: 0.05em 0.1em 0.03em rgb(255, 96, 96);
+
+}

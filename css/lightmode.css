@@ -1,0 +1,35 @@
+#calculator-outer {
+    box-shadow: 0.3em 0.5em 1em darkgray;
+    background: linear-gradient(#3e3e3e, #4a4a4a);
+}
+
+#logo {
+    color: rgb(203, 169, 174);
+}
+
+#screen-inner {
+    background-color: rgb(167, 162, 127);
+}
+
+#screen-display {
+    color: rgb(50, 7, 3);
+}
+
+.button-inner {
+    background-color: rgb(203, 169, 174);
+    color: rgb(99, 47, 64);
+    box-shadow: 0.05em 0.1em 0.03em rgb(134, 128, 128);
+}
+
+.operator {
+    background-color: rgb(171, 118, 20);
+}
+
+.special {
+    background-color: rgb(206, 204, 201);
+}
+
+#btn-C {
+    background-color: rgb(141, 48, 39);
+    color: whitesmoke;
+}

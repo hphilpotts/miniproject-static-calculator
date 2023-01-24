@@ -18,6 +18,9 @@ const buttons = document.querySelectorAll(".button-inner");
 function handleClick(){
     buttonPress = this.innerHTML;
     processButtonPress(buttonPress);
+    console.log('Current Input:', currentInput);
+    console.log('Previous Input:', previousInput);
+    console.log('Last Result:', lastResult);
 };
 
 buttons.forEach(button => button.addEventListener('click', handleClick));
@@ -47,7 +50,10 @@ const processButtonPress = input => {
 };
 
 const numberPress = input => {
-    if (!currentInput) currentInput = 0; // occasionally null sneaks through... this is where TypeScript would be great
+    if (!currentInput) {
+        clearDisplay(); // moved this here from binaryOperatorPress - will ensure prev input displays until new input added.
+        currentInput = 0; // occasionally null sneaks through... this is where TypeScript would be great
+    }
     display += input;
     currentInput += input;
     setDisplay(display);
@@ -76,7 +82,6 @@ const binaryOperatorPress = input => {
     previousInput = currentInput;
     currentInput = 0;
     display = '';
-    clearDisplay();
 }
 
 const equalsPress = () => {
@@ -153,3 +158,21 @@ const evaluateInputs = (previous, current) => {
     setDisplay(stringyOutput);
     display = '';
 }
+
+// * -- Change Modes:
+
+const modeChangeButtons = document.getElementsByClassName('control-button');
+const styleSheet = document.getElementById('current-stylesheet');
+let currentStylesheet = styleSheet.getAttribute('href');
+
+// light mode:
+const setLightMode = () => styleSheet.setAttribute('href', 'css/lightmode.css')
+modeChangeButtons[0].addEventListener('click', setLightMode);
+
+// dark mode:
+const setDarkMode = () => styleSheet.setAttribute('href', 'css/nightmode.css')
+modeChangeButtons[1].addEventListener('click', setDarkMode)
+
+// daft mode:
+const setDaftMode = () => console.log('Not yet added :(');
+modeChangeButtons[2].addEventListener('click', setDaftMode);
