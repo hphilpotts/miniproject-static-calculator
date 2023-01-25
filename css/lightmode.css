@@ -15,7 +15,7 @@
     color: rgb(50, 7, 3);
 }
 
-.button-inner {
+.button-inner, .control-button {
     background-color: rgb(203, 169, 174);
     color: rgb(99, 47, 64);
     box-shadow: 0.05em 0.1em 0.03em rgb(134, 128, 128);
@@ -27,6 +27,11 @@
 
 .special {
     background-color: rgb(206, 204, 201);
+}
+
+.control-button {
+    background-color:rgb(203, 169, 174);
+    box-shadow: 0.3em 0.5em 1em darkgray;
 }
 
 #btn-C {
