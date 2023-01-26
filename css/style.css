@@ -118,7 +118,6 @@
 /* || Control panel */
 
 #control-panel {
-    background-color: black;
     display: flex;
     justify-content: space-around;
 
@@ -131,12 +130,27 @@
     right: 0; 
     margin-left: auto; 
     margin-right: auto;
+
+    border-radius: 2em;
 }
 
 .control-button {
-    color: white;
-    background-color: aquamarine;
     margin: 1%;
-    padding: 1%;
+    padding: 1% 3%;
     border-radius: 5%;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: smaller;
+    /* Min height set here to prevent resizing to smaller than text contained within button */
+    min-height: 0.8rem;
+}
+
+.control-button {
+    border-radius: 1em;
+}
+
+/* Prevents control button text from overlapping on very narrow screens */
+@media all and (max-width: 320px) {
+    .control-button {
+        font-size: x-small;
+    }
 }

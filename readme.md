@@ -62,6 +62,11 @@ _Two issues, fed back when progress shared_:
 - JS functionality added so that light / dark buttons now switch stylesheets. At the moment the entire stylesheet changes over, this could be sharpened up later on. Next step added!       
 - Buttons look garbage, next step will be styling these!        
 
+24/01/23:       
+- Separated out light/dark mode CSS into separate files, with a third fixed 'style.css' handling styles not relating to view modes.     
+
+25/01/23:       
+- Restyled control buttons at top to improve appearance and mobile responsiveness.      
 
 ## Bugs to resolve/features to add:       
 - Allow repeated presses of `=` to redo previous operation.     
@@ -69,6 +74,4 @@ _Two issues, fed back when progress shared_:
 - Account for repeated operator presses.        
 - Dark mode, obviously!     
 - Some of the bigger functions need splitting up (looking at you, `evaluateInputs`...)      
-- Further formatting to improve appearance.     
 - Sounds?       
-- Reduce duplicated CSS in dark/light mode // split into generic css and light/dark.        

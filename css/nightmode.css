@@ -28,7 +28,7 @@ body {
 
 /* || Button Colours: */
 
-.button-inner {
+.button-inner, .control-button {
     background-color:rgb(88, 87, 87);
     color: rgb(0, 255, 0);
     box-shadow: 0.05em 0.1em 0.15em rgb(0, 255, 0);
@@ -47,4 +47,8 @@ body {
     color: rgb(255, 96, 96);
     box-shadow: 0.05em 0.1em 0.03em rgb(255, 96, 96);
 
+}
+
+#control-panel {
+    opacity: 100%;
 }
