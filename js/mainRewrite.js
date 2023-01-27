@@ -63,6 +63,10 @@ const processButtonPress = input => {
 // when number button is pressed, take the number pressed (as string), join on to to currentRightNum string and set display accordingly: 
 const numberPress = numberPressed => {
     // console.log(numberPressed, 'was passed in to numberPress');
+    if (numberPressed === '.') {
+        if (!currentRightNum) currentRightNum = leftNum;
+        if (currentRightNum.includes('.')) numberPressed = '';
+    } 
     // if truthy expression ensures null does not remain as part of the number being displayed (i.e. "null8")
     (currentRightNum === null) ? currentRightNum = numberPressed : currentRightNum += numberPressed;
     setDisplay(currentRightNum);
@@ -79,7 +83,7 @@ const unaryOperatorPress = unaryPressed =>  {
 
     // determine which unary operator was pressed based upon string value passed in:
     switch (unaryPressed) {
-        case '+/-': operand = -operand;
+        case '+/-': operand = -operand; break
         case '%': operand = operand / 100; break
         case  '√': operand = Math.sqrt(operand); break
         default: console.log('Error - unary input not found, it was', unaryPressed);
@@ -106,12 +110,8 @@ const binaryOperatorPress = binaryPressed => {
             case ('/'): output = operand1 / operand2; break
             default: console.log('Error - binary input not found, input was', binaryPressed);
         }
-        output = output.toString();
 
-        if (output.includes('.')) {
-            output = handleTrailingZeros(output);
-        }
-
+        output = (output*1).toString(); // the *1 eliminates any unneccessary trailing 0s
         console.log('...output from binaryOperatorPressed is', output);
     }
 
@@ -149,11 +149,7 @@ const equalsPress = () => {
             case ('/'): output = operand1 / operand2; break
             default: console.log('Error - binary input not found, input was', binaryPressed);
         }
-        output = output.toString();
-
-        if (output.includes('.')) {
-            output = handleTrailingZeros(output);
-        }
+        output = (output*1).toString();
 
         console.log('Output from equalsPress is', output);
     }

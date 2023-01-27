@@ -73,13 +73,13 @@ _Two issues, fed back when progress shared_:
 27/01/23:       
 - After discovering a major issue yesterday (i.e. the calculator can't do maths) I've decided to rewrite my main.js file from the ground up. I feel I had overcomplicated things as I fixed bugs and added functionality, so will go back to basics - albeit with a clearer idea of how I want the logic to run.        
 - Rewrite proceeding reasonably well: consecutive binary operations / equals presses or combinations of the two are working.        
+- Further functionality added - odd combinations of operators now work.     
 
+## Bugs to resolve/features to add:     
+- '+/-' not working 100% perfectly - need to ensure LH number is not changed if user is operating on current RH number.     
 
-## Bugs to resolve/features to add:       
-- Allow repeated presses of `=` to redo previous operation.     
-- Allow consecutive operations before evaluation.       
-- Account for repeated operator presses.        
-- Daft mode       
-- Some of the bigger functions need splitting up (looking at you, `evaluateInputs`...)      
-- Sounds?       
+- Some of the bigger functions need splitting up (looking at you, `evaluateInputs`...)    
 - Convert to TypeScript     
+
+- Daft mode       
+- Sounds?       
