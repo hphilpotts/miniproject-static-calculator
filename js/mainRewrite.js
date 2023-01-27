@@ -75,7 +75,7 @@ const unaryOperatorPress = unaryPressed =>  {
 
     // establish operand - if no right number then reuse left number (allows for repeat operation)
     let operand = null;
-    (!currentRightNum) ? operand = leftNum : operand = currentRightNum;
+    (!currentRightNum) ? operand = +leftNum : operand = +currentRightNum;
 
     // determine which unary operator was pressed based upon string value passed in:
     switch (unaryPressed) {
@@ -87,7 +87,7 @@ const unaryOperatorPress = unaryPressed =>  {
 
     // TODO establish what to do with prevRightNum - what do I set this based on, if at all?
 
-    leftNum = operand;
+    leftNum = operand.toString();
     currentRightNum = null;
     setDisplay(leftNum);
 
@@ -107,6 +107,11 @@ const binaryOperatorPress = binaryPressed => {
             default: console.log('Error - binary input not found, input was', binaryPressed);
         }
         output = output.toString();
+
+        if (output.includes('.')) {
+            output = handleTrailingZeros(output);
+        }
+
         console.log('...output from binaryOperatorPressed is', output);
     }
 
@@ -132,6 +137,7 @@ const binaryOperatorPress = binaryPressed => {
 
 }
 
+// TODO - either incorporate into binaryOperatorPress or break down into functions accessible to both equalsPress and binaryOperatorPress
 const equalsPress = () => {
     let output = null; operand1 = null, operand2 = null;
 
@@ -144,6 +150,11 @@ const equalsPress = () => {
             default: console.log('Error - binary input not found, input was', binaryPressed);
         }
         output = output.toString();
+
+        if (output.includes('.')) {
+            output = handleTrailingZeros(output);
+        }
+
         console.log('Output from equalsPress is', output);
     }
 
@@ -175,6 +186,24 @@ const equalsPress = () => {
     }
 }
 
+const handleTrailingZeros = floatAsString => {
+
+    console.log('There be trailing zeros!');
+
+    let output = floatAsString;
+
+    const trimDecimalZeros = (str) => {
+        if (str.endsWith('0')) {
+            str.slice(0, -1);
+            trimDecimalZeros(str);
+        }
+    }
+
+    trimDecimalZeros(output);
+
+    return output;
+}
+
 const cancel = () => {
     resetAll();
     clearDisplay();
@@ -186,8 +215,33 @@ const display = document.getElementById('screen-display');
 
 // takes in a string (representing a number) and renders this in the calculator's display
 const setDisplay = numberAsString => {
-    if (numberAsString.length > 8) numberAsString = "Q_Q"; // stops value being displayed from overlapping the screen
-    display.innerText = numberAsString;
+    console.log('Unfiltered number as string:', numberAsString);
+    let displayValue = numberAsString
+
+    // handle floats in order to fit number displayed to screen
+    if (numberAsString.includes('.')){
+        (numberAsString.indexOf('.') > 9) ? displayValue ="err" : displayValue = numberAsString.slice(0, 8);
+    }
+
+    // handle large ints:
+    if (displayValue.length > 8) displayValue = "err"; // stops value being displayed from overlapping the screen
+
+    // otherwise set display:
+    display.innerText = displayValue;
 }
 
 const clearDisplay = () => display.innerText = '';
+
+// * -- Change Modes:
+
+const modeChangeButtons = document.getElementsByClassName('control-button');
+const styleSheet = document.getElementById('current-stylesheet');
+let currentStylesheet = styleSheet.getAttribute('href');
+
+// light mode:
+const setLightMode = () => styleSheet.setAttribute('href', 'css/lightmode.css')
+modeChangeButtons[0].addEventListener('click', setLightMode);
+
+// dark mode:
+const setDarkMode = () => styleSheet.setAttribute('href', 'css/nightmode.css')
+modeChangeButtons[1].addEventListener('click', setDarkMode)
