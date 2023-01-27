@@ -5,8 +5,8 @@
 let leftNum= null; // the number (as string) on the left hand side of the sum - will also be used to store the number most recently evaluated
 let currentRightNum = null; // the number (as string) on the right hand side of a sum, currently being input by used
 let prevRightNum = null; // the previously input currentRightNum (storing this allows repeated press of `=` to repeat previous operation)
-let currentOperator = null; // the most recently pressed operator
-let prevOperator = null;
+let currentOperator = null; // the most recently pressed operator, held ready for eval in the even of `=` or binary operator press
+let prevOperator = null; // the previously used binary operator
 
 const logGlobalVariables = () => console.log(`left num: ${leftNum}, current op: ${currentOperator}, current Rnum: ${currentRightNum}, prev op: ${prevOperator}, prev Rnum: ${prevRightNum}`)
 
@@ -74,6 +74,8 @@ const numberPress = numberPressed => {
 
 // when a unary operator is pressed, determine from string passed in what operation to perform, then evaluate, then update globals: 
 const unaryOperatorPress = unaryPressed =>  {
+
+
     if (unaryPressed === '+/-') {
         if (currentRightNum) {
             currentRightNum = (-currentRightNum).toString();
@@ -89,12 +91,9 @@ const unaryOperatorPress = unaryPressed =>  {
             setDisplay(currentRightNum);
         }
     } else {
-            // first save unary press as most recent operator:
-        currentOperator = unaryPressed;
 
         // establish operand - if no right number then reuse left number (allows for repeat operation)
         let operand = null;
-        (!currentRightNum) ? operand = +leftNum : operand = +currentRightNum;
 
         // determine which unary operator was pressed based upon string value passed in:
         switch (unaryPressed) {
@@ -105,9 +104,8 @@ const unaryOperatorPress = unaryPressed =>  {
 
         // TODO establish what to do with prevRightNum - what do I set this based on, if at all?
 
-        leftNum = operand.toString();
-        currentRightNum = null;
-        setDisplay(leftNum);
+        currentRightNum = operand.toString();
+        setDisplay(currentRightNum);
 
     }
 
@@ -164,7 +162,7 @@ const equalsPress = () => {
             case ('-'): output = operand1 - operand2; break
             case ('x'): output = operand1 * operand2; break
             case ('/'): output = operand1 / operand2; break
-            default: console.log('Error - binary input not found, input was', binaryPressed);
+            default: console.log('Error - binary input not found, input was', binaryToUse);
         }
         output = (output*1).toString();
 
