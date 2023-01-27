@@ -65,10 +65,21 @@ _Two issues, fed back when progress shared_:
 25/01/23:       
 - Restyled control buttons at top to improve appearance and mobile responsiveness.      
 
+26/01/23:       
+- Removed 'daft mode' button until functionality added.     
+- _Issue found with latest version... either I have broken the JS at some point or it never worked correctly and I've only just found out._
+- _This is exactly why I want to learn testing...!_     
+
+27/01/23:       
+- After discovering a major issue yesterday (i.e. the calculator can't do maths) I've decided to rewrite my main.js file from the ground up. I feel I had overcomplicated things as I fixed bugs and added functionality, so will go back to basics - albeit with a clearer idea of how I want the logic to run.        
+- Rewrite proceeding reasonably well: consecutive binary operations / equals presses or combinations of the two are working.        
+
+
 ## Bugs to resolve/features to add:       
 - Allow repeated presses of `=` to redo previous operation.     
 - Allow consecutive operations before evaluation.       
 - Account for repeated operator presses.        
-- Dark mode, obviously!     
+- Daft mode       
 - Some of the bigger functions need splitting up (looking at you, `evaluateInputs`...)      
 - Sounds?       
+- Convert to TypeScript     

@@ -2,7 +2,7 @@
 
 let display = ''; // this is what shows on the screen
 let buttonPress = null; // last button to be pressed, get from element's inner html thru event listener, passed to handleButtonPress
-let lastOperator = null; // remember last operator presseed, used in evaluateInputs
+let lastOperator = null; // remember last operator pressed, used in evaluateInputs
 let currentInput = ''; // number currently being input into calculator (via multiple button presses)
 let previousInput = 0; // previously added input - get from currentInput when operator pressed, used in evaluateInput
 let lastResult = null; // saves the result from evaluateInput, used to allow immediate operator press after '='
