@@ -98,10 +98,8 @@ const unaryOperatorPress = unaryPressed =>  {
 
 // when a binary operator is pressed, determine from string passed in what operation to perform, then evaluate, then update globals: 
 const binaryOperatorPress = binaryPressed => {
-    let operand1 = null, operand2 = null;
+    let operand1 = +leftNum, operand2 = +currentRightNum;
     if (leftNum && currentOperator && currentRightNum) { // if sum already present in saved vars, evaluate and save binaryPressed as new currentOperator
-        operand1 = +leftNum; // `+` to convert to float, as below
-        operand2 = +currentRightNum;
         leftNum = performBinaryOperation(operand1, binaryPressed, operand2); // see function below equalsPress()
         currentOperator = binaryPressed;  
         prevRightNum = currentRightNum;
@@ -118,27 +116,22 @@ const binaryOperatorPress = binaryPressed => {
 
 // TODO - either incorporate into binaryOperatorPress or break down into functions accessible to both equalsPress and binaryOperatorPress
 const equalsPress = () => {
-    let operand1 = null, operand2 = null;
+    let operand1 = +leftNum, operand2 = null;
     if (leftNum && currentOperator && currentRightNum) {
-        operand1 = +leftNum;
         operand2 = +currentRightNum;
         leftNum = performBinaryOperation(operand1, currentOperator, operand2);
         prevOperator =  currentOperator;
         currentOperator = null;
         prevRightNum = currentRightNum;
         currentRightNum = null;
-        setDisplay(leftNum);
     } else if (leftNum && currentOperator && prevRightNum) {
-        operand1 = +leftNum;
         operand2 = +prevRightNum;
         leftNum = performBinaryOperation(operand1, currentOperator, operand2);
-        setDisplay(leftNum);
     } else if (leftNum && prevOperator && prevRightNum) {
-        operand1 = +leftNum;
         operand2 = +prevRightNum;
         leftNum = performBinaryOperation(operand1, prevOperator, operand2);
-        setDisplay(leftNum);
     }
+    setDisplay(leftNum);
 }
 
 // Used in both binaryOperatorPress and equalsPress:
@@ -168,8 +161,8 @@ const setDisplay = numberAsString => {
     let displayValue = numberAsString
     // handle floats in order to fit number displayed to screen, if very large float (>99999999) display error, else trim down
     if (numberAsString.includes('.')) (numberAsString.indexOf('.') > 9) ? displayValue ="err" : displayValue = numberAsString.slice(0, 8);
-    // handle large ints:
-    if (displayValue.length > 8) displayValue = "err"; // stops value being displayed from overlapping the screen
+    // handle large ints / very small floats
+    if (displayValue.length > 8 || numberAsString.includes('e')) displayValue = "err"; // stops value being displayed from overlapping the screen
     // then set display:
     display.innerText = displayValue;
 }
