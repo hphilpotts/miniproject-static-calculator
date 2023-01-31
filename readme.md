@@ -76,13 +76,16 @@ _Two issues, fed back when progress shared_:
 27/01/23:       
 - After discovering a major issue yesterday (i.e. the calculator can't do maths) I've decided to rewrite my main.js file from the ground up. I feel I had overcomplicated things as I fixed bugs and added functionality, so will go back to basics - albeit with a clearer idea of how I want the logic to run.        
 - Rewrite proceeding reasonably well: consecutive binary operations / equals presses or combinations of the two are working.        
+- Further functionality added - odd combinations of operators now work. '+/-' now working as well. Refactoring time, I think!                
 
+30/01/23:       
+- Continued refactoring, then resolving issues created as a result of refactoring.      
 
-## Bugs to resolve/features to add:       
-- Allow repeated presses of `=` to redo previous operation.     
-- Allow consecutive operations before evaluation.       
-- Account for repeated operator presses.        
-- Daft mode       
-- Some of the bigger functions need splitting up (looking at you, `evaluateInputs`...)      
-- Sounds?       
+31/01/23:       
+- Started converting to TypeScript. First challenge is allowing my global variables to be nullable. Considering either changing approach (and not using `null`), or changing `strictNullChecks` compiler flag.      
+
+## Bugs to resolve/features to add:     
 - Convert to TypeScript     
+
+- Daft mode       
+- Sounds?       
