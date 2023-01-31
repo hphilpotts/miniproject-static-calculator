@@ -8,8 +8,6 @@ let prevRightNum = null; // the previously input currentRightNum (storing this a
 let currentOperator = null; // the most recently pressed operator, held ready for eval in the event of `=` or binary operator press
 let prevOperator = null; // the previously used binary operator, allows for repeated press of `=` 
 
-const logGlobals = () => console.log(`LN:${leftNum} RN:${currentRightNum} prevRN:${prevRightNum}, O:${currentOperator}, prevO:${prevOperator}`)
-
 const resetAll = () => { // Full reset of all Global variables to null
     leftNum = null; currentRightNum = null; prevRightNum = null; currentOperator = null; prevOperator = null;
 };
@@ -32,7 +30,6 @@ buttons.forEach(button => button.addEventListener('click', handleClick));
 
 // input is the innerHTML from the button being pressed, passed from handleClick() above:
 const processButtonPress = input => {
-    logGlobals();
 
     // button innerHTML strings grouped by type (with respective functions to run for each type)
     const unaryOperators = ['+/-', '%', '√'];
@@ -52,7 +49,6 @@ const processButtonPress = input => {
         default:
             console.log(`Error - button pressed not caught, input was`, input); // default case to catch bad input
     }
-    logGlobals();
 };
 
 // when number button is pressed, take the number pressed (as string), join on to to currentRightNum string and set display accordingly: 
