@@ -20,6 +20,7 @@ const buttons = document.querySelectorAll(".button-inner");
 // Get button innerHTML string, pass this as input to processButtonPress:
 function handleClick():void {
     let buttonPress: string = this.innerHTML;
+    window.navigator.vibrate(200); // goodness knows if this will work...!
     processButtonPress(buttonPress); // see section immediately below:
 };
 

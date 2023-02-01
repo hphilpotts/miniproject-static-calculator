@@ -80,9 +80,12 @@ _Two issues, fed back when progress shared_:
 
 31/01/23:       
 - Started converting to TypeScript. First challenge is allowing my global variables to be nullable. Considering either changing approach (and not using `null`), or changing `strictNullChecks` compiler flag.      
+- Decided to go with changing `strictNullChecks` - not sure if this is best practice but I've found enough articles that suggest that this is fine when starting out.       
+
+01/02/23:       
+- Finished converting `mainRewrite.js` to TS, compiled and working ok in `main`.
 
 ## Bugs to resolve/features to add:     
-- Convert to TypeScript     
-
 - Daft mode       
 - Sounds?       
+- Button press animation   
