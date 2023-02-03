@@ -172,13 +172,46 @@ const styleSheet: HTMLElement = document.getElementById('current-stylesheet');
 let currentStylesheet: string = styleSheet.getAttribute('href');
 
 // light mode:
-const setLightMode = (): void => styleSheet.setAttribute('href', 'css/lightmode.css');
+const setLightMode = (): void => {
+    if (styleSheet.getAttribute('href') === 'css/daftmode.css') clearDisplay(); // clear display if daft mode previously selected
+    styleSheet.setAttribute('href', 'css/lightmode.css');
+}
+
 modeChangeButtons[0].addEventListener('click', setLightMode);
 
 // dark mode:
-const setDarkMode = (): void => styleSheet.setAttribute('href', 'css/nightmode.css');
+const setDarkMode = (): void => {
+    if (styleSheet.getAttribute('href') === 'css/daftmode.css') clearDisplay();
+    styleSheet.setAttribute('href', 'css/nightmode.css');
+}
+
 modeChangeButtons[1].addEventListener('click', setDarkMode);
 
 // daft mode:
-const setDaftMode = ():void => styleSheet.setAttribute('href', 'css/daftmode.css');
+const setDaftMode = ():void => {
+    styleSheet.setAttribute('href', 'css/daftmode.css');
+    startDaftMode();
+}
 modeChangeButtons[2].addEventListener('click', setDaftMode)
+
+const startDaftMode = (): void => {
+
+    clearDisplay();
+    resetAll();
+
+    const daftButtons = document.querySelectorAll(".daft-button-inner");
+    function handleDaftClick():void{
+        let daftButtonPress: string = this.innerHTML;
+        processDaftClick(daftButtonPress);
+    }
+    daftButtons.forEach(button => button.addEventListener('click', handleDaftClick));
+
+    const processDaftClick = (input: string): void => {
+        const audioElement = <HTMLAudioElement> document.getElementById('audio')
+        display.innerHTML = input;
+        const audioFile: string = `/sounds/` + (input.replace(' ', '_') + '.wav');
+        audioElement.setAttribute('src', audioFile);
+        audioElement.play();
+    }
+}
+

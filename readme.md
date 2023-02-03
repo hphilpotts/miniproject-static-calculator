@@ -87,7 +87,11 @@ _Two issues, fed back when progress shared_:
 - Tried adding haptic feedback upon button press but ran into issues - found out from articles that Safari does not support this.       
 
 02/02/23:       
-- Starting work on 'daft' mode.
+- Starting work on 'daft' mode: basic html structure added, intially `display: none`.       
+
+03/02/23:       
+- JS logic added to handle change from regular modes to 'daft' mode, screen updates.        
+- Audio now plays. Next task is adding interesting functionality to upper buttons.      
 
 ## Bugs to resolve/features to add:     
 - Daft mode       

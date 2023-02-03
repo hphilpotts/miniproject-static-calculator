@@ -180,13 +180,40 @@ var modeChangeButtons = document.getElementsByClassName('control-button');
 var styleSheet = document.getElementById('current-stylesheet');
 var currentStylesheet = styleSheet.getAttribute('href');
 // light mode:
-var setLightMode = function () { return styleSheet.setAttribute('href', 'css/lightmode.css'); };
+var setLightMode = function () {
+    if (styleSheet.getAttribute('href') === 'css/daftmode.css')
+        clearDisplay(); // clear display if daft mode previously selected
+    styleSheet.setAttribute('href', 'css/lightmode.css');
+};
 modeChangeButtons[0].addEventListener('click', setLightMode);
 // dark mode:
-var setDarkMode = function () { return styleSheet.setAttribute('href', 'css/nightmode.css'); };
+var setDarkMode = function () {
+    if (styleSheet.getAttribute('href') === 'css/daftmode.css')
+        clearDisplay();
+    styleSheet.setAttribute('href', 'css/nightmode.css');
+};
 modeChangeButtons[1].addEventListener('click', setDarkMode);
 // daft mode:
-var setDaftMode = function () { return styleSheet.setAttribute('href', 'css/daftmode.css'); };
+var setDaftMode = function () {
+    styleSheet.setAttribute('href', 'css/daftmode.css');
+    startDaftMode();
+};
 modeChangeButtons[2].addEventListener('click', setDaftMode);
-var daftButtons = document.querySelectorAll(".daft-button-inner");
+var startDaftMode = function () {
+    clearDisplay();
+    resetAll();
+    var daftButtons = document.querySelectorAll(".daft-button-inner");
+    function handleDaftClick() {
+        var daftButtonPress = this.innerHTML;
+        processDaftClick(daftButtonPress);
+    }
+    daftButtons.forEach(function (button) { return button.addEventListener('click', handleDaftClick); });
+    var processDaftClick = function (input) {
+        var audioElement = document.getElementById('audio');
+        display.innerHTML = input;
+        var audioFile = "/sounds/" + (input.replace(' ', '_') + '.wav');
+        audioElement.setAttribute('src', audioFile);
+        audioElement.play();
+    };
+};
 //# sourceMappingURL=mainRewrite.js.map
