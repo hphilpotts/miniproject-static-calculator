@@ -185,4 +185,8 @@ modeChangeButtons[0].addEventListener('click', setLightMode);
 // dark mode:
 var setDarkMode = function () { return styleSheet.setAttribute('href', 'css/nightmode.css'); };
 modeChangeButtons[1].addEventListener('click', setDarkMode);
+// daft mode:
+var setDaftMode = function () { return styleSheet.setAttribute('href', 'css/daftmode.css'); };
+modeChangeButtons[2].addEventListener('click', setDaftMode);
+var daftButtons = document.querySelectorAll(".daft-button-inner");
 //# sourceMappingURL=mainRewrite.js.map

@@ -20,7 +20,6 @@ const buttons = document.querySelectorAll(".button-inner");
 // Get button innerHTML string, pass this as input to processButtonPress:
 function handleClick():void {
     let buttonPress: string = this.innerHTML;
-    window.navigator.vibrate(200); // goodness knows if this will work...!
     processButtonPress(buttonPress); // see section immediately below:
 };
 
@@ -173,9 +172,13 @@ const styleSheet: HTMLElement = document.getElementById('current-stylesheet');
 let currentStylesheet: string = styleSheet.getAttribute('href');
 
 // light mode:
-const setLightMode = (): void => styleSheet.setAttribute('href', 'css/lightmode.css')
+const setLightMode = (): void => styleSheet.setAttribute('href', 'css/lightmode.css');
 modeChangeButtons[0].addEventListener('click', setLightMode);
 
 // dark mode:
-const setDarkMode = (): void => styleSheet.setAttribute('href', 'css/nightmode.css')
-modeChangeButtons[1].addEventListener('click', setDarkMode)
+const setDarkMode = (): void => styleSheet.setAttribute('href', 'css/nightmode.css');
+modeChangeButtons[1].addEventListener('click', setDarkMode);
+
+// daft mode:
+const setDaftMode = ():void => styleSheet.setAttribute('href', 'css/daftmode.css');
+modeChangeButtons[2].addEventListener('click', setDaftMode)

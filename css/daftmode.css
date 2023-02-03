@@ -1,0 +1,76 @@
+/* || Dark Mode CSS */
+
+body {
+    background-color: black;
+}
+
+.control-button {
+    color: rgb(0, 255, 0);
+    background-color: #6d6d6dcd;
+    box-shadow: 0.1em 0.1em 0.15em #000000;
+}
+
+/* || Calculator Main Body Colours: */
+
+#calculator-outer {
+    box-shadow: 0 0 10em rgb(0, 8, 255);
+    background: linear-gradient(#3e3e3e, #000000);
+}
+
+/* || Screen Colours: */
+
+#logo {
+    color: rgb(0, 255, 0);
+}
+
+#screen-inner {
+    background-color: black;
+}
+
+#screen-display {
+    color: rgb(0, 255, 0);
+}
+
+/* || Show/hide button-inner divs */
+#buttons-inner {
+    display: none;
+}
+
+#buttons-inner-daft {
+    display: grid;
+}
+
+/* || Button Colours: */
+
+.button-inner {
+    background-color: black;
+    font-size: smaller;
+}
+.r0 {
+    color: rgb(0, 8, 255);
+    box-shadow: 0.05em 0.1em 0.3em rgb(0, 8, 255);
+}
+
+.r1 {
+    color: rgb(0, 255, 0);
+    box-shadow: 0.05em 0.1em 0.3em rgb(0, 255, 0);
+}
+
+.r2 {
+    color: rgb(255, 242, 0);
+    box-shadow: 0.05em 0.1em 0.3em rgb(255, 242, 0);
+}
+.r3 {
+    color: rgb(255, 0, 0);
+    box-shadow: 0.05em 0.1em 0.3em rgb(255, 0, 0);
+}
+
+.r4 {
+    color: rgb(251, 0, 255);
+    box-shadow: 0.05em 0.1em 0.3em rgb(251, 0, 255);
+}
+
+
+#control-panel {
+    opacity: 100%;
+}

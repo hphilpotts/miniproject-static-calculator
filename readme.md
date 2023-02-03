@@ -84,6 +84,10 @@ _Two issues, fed back when progress shared_:
 
 01/02/23:       
 - Finished converting `mainRewrite.js` to TS, compiled and working ok in `main`.
+- Tried adding haptic feedback upon button press but ran into issues - found out from articles that Safari does not support this.       
+
+02/02/23:       
+- Starting work on 'daft' mode.
 
 ## Bugs to resolve/features to add:     
 - Daft mode       

@@ -91,13 +91,17 @@
 
 /* || Button Structure/Styling: */
 
-#buttons-inner {
+#buttons-inner, #buttons-inner-daft {
     margin: 5%;
     height: 100%;
     display: grid;
     grid-template-columns: repeat(4, 22%);
     column-gap: 4%;
     row-gap: 5%;
+}
+
+#buttons-inner-daft {
+    display: none;
 }
 
 /* * I've not used table / table-cell before but it seems a great way of centering vertically and horizontally */
