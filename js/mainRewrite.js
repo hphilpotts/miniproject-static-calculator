@@ -276,11 +276,15 @@ var startDaftMode = function () {
     function playAllSound() {
         var _a, e_1, _b, _c;
         return __awaiter(this, void 0, void 0, function () {
-            var delay, _d, soundInputs_1, soundInputs_1_1, soundInput, e_1_1;
+            function halt() { haltFunc = true; }
+            var delay, haltFunc, _d, soundInputs_1, soundInputs_1_1, soundInput, e_1_1;
             return __generator(this, function (_e) {
                 switch (_e.label) {
                     case 0:
                         delay = function (ms) { return new Promise(function (res) { return setTimeout(res, ms); }); };
+                        haltFunc = false;
+                        '';
+                        document.getElementById('stop').addEventListener('click', halt);
                         _e.label = 1;
                     case 1:
                         _e.trys.push([1, 9, 10, 15]);
@@ -295,10 +299,14 @@ var startDaftMode = function () {
                     case 4:
                         _e.trys.push([4, , 6, 7]);
                         soundInput = _c;
+                        if (haltFunc)
+                            return [2 /*return*/];
                         return [4 /*yield*/, delay(500)];
                     case 5:
                         _e.sent();
                         handleSound(soundInput);
+                        if (haltFunc)
+                            return [2 /*return*/];
                         return [3 /*break*/, 7];
                     case 6:
                         _d = true;

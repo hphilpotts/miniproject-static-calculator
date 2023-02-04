@@ -216,6 +216,7 @@ const startDaftMode = (): void => {
                     console.log('play pressed');
                     playAllSound();
                     break
+
             }
         } else {
             handleSound(input);
@@ -232,9 +233,14 @@ const startDaftMode = (): void => {
 
     async function playAllSound() {
         const delay = (ms: number) => new Promise (res => setTimeout(res, ms));
+        let haltFunc = false;
+        function halt() { haltFunc = true }''
+        document.getElementById('stop').addEventListener('click', halt);
         for await (const soundInput of soundInputs) {
+            if (haltFunc) return;
             await delay(500);
             handleSound(soundInput);
+            if (haltFunc) return;
         }
     }
 
