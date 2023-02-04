@@ -206,12 +206,37 @@ const startDaftMode = (): void => {
     }
     daftButtons.forEach(button => button.addEventListener('click', handleDaftClick));
 
+    const soundInputs: string[] = ['work it', 'harder', 'make it', 'better', 'do it', 'faster', 'makes us', 'stronger', 'more than', 'ever', 'hour', 'after', 'our', 'work is', 'never', 'over'];
+
     const processDaftClick = (input: string): void => {
+        const specialDaftButtons: string[] = ['play', 'random', 'button3', 'stop'];
+        if (specialDaftButtons.includes(input)) {
+            switch (input) {
+                case ('play'):
+                    console.log('play pressed');
+                    playAllSound();
+                    break
+            }
+        } else {
+            handleSound(input);
+        }
+    }
+
+    const handleSound = (input: string): void => {
         const audioElement = <HTMLAudioElement> document.getElementById('audio')
         display.innerHTML = input;
         const audioFile: string = `/sounds/` + (input.replace(' ', '_') + '.wav');
         audioElement.setAttribute('src', audioFile);
         audioElement.play();
     }
+
+    async function playAllSound() {
+        const delay = (ms: number) => new Promise (res => setTimeout(res, ms));
+        for await (const soundInput of soundInputs) {
+            await delay(500);
+            handleSound(soundInput);
+        }
+    }
+
 }
 

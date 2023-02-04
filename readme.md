@@ -93,6 +93,10 @@ _Two issues, fed back when progress shared_:
 - JS logic added to handle change from regular modes to 'daft' mode, screen updates.        
 - Audio now plays. Next task is adding interesting functionality to upper buttons.      
 
+04/02/23"       
+- Animation added to button presses.        
+- Adding play all functionality - initial issues found where previous `play()` interrupted immediately by next. Then, found that `forEach()` is not compatible with `async`.
+
 ## Bugs to resolve/features to add:     
 - Daft mode       
 - Sounds?       

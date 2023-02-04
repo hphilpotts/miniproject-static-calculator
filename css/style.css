@@ -119,6 +119,12 @@
     font-size: x-large;
 }
 
+.button-inner:active, .daft-button-inner:active {
+    box-shadow: -0.1em -0.1em 0.15em transparent;
+    transition-property: box-shadow;
+    transition-duration: 0.3s;
+}
+
 /* || Control panel */
 
 #control-panel {
