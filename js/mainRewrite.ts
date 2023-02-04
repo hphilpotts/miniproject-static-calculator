@@ -220,7 +220,10 @@ const startDaftMode = (): void => {
                     console.log('play pressed');
                     playAllSound();
                     break
-
+                case ('random'):
+                    const randomSound: string = soundInputs[Math.floor(Math.random() * soundInputs.length)];
+                    handleSound(randomSound);
+                    break;
             }
         } else {
             handleSound(input);

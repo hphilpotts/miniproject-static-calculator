@@ -56,9 +56,10 @@ var resetAll = function () {
 };
 // * -- Event listeners and handle button click:
 var buttons = document.querySelectorAll(".button-inner");
+var click = document.getElementById('click');
+click.volume = 0.3; // setting in JS as no volume attribute supported by browsers
 // Get button innerHTML string, pass this as input to processButtonPress:
 function handleClick() {
-    var click = document.getElementById('click');
     click.play();
     var buttonPress = this.innerHTML;
     processButtonPress(buttonPress); // see section immediately below:
@@ -261,6 +262,10 @@ var startDaftMode = function () {
                 case ('play'):
                     console.log('play pressed');
                     playAllSound();
+                    break;
+                case ('random'):
+                    var randomSound = soundInputs[Math.floor(Math.random() * soundInputs.length)];
+                    handleSound(randomSound);
                     break;
             }
         }
