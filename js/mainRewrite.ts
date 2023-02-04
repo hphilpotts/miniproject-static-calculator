@@ -17,8 +17,12 @@ const resetAll = ():void => { // Full reset of all Global variables to null
 
 const buttons = document.querySelectorAll(".button-inner");
 
+const click = <HTMLAudioElement> document.getElementById('click');
+click.volume = 0.3; // setting in JS as no volume attribute supported by browsers
+
 // Get button innerHTML string, pass this as input to processButtonPress:
 function handleClick():void {
+    click.play();
     let buttonPress: string = this.innerHTML;
     processButtonPress(buttonPress); // see section immediately below:
 };

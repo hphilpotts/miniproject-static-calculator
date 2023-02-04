@@ -58,6 +58,8 @@ var resetAll = function () {
 var buttons = document.querySelectorAll(".button-inner");
 // Get button innerHTML string, pass this as input to processButtonPress:
 function handleClick() {
+    var click = document.getElementById('click');
+    click.play();
     var buttonPress = this.innerHTML;
     processButtonPress(buttonPress); // see section immediately below:
 }
