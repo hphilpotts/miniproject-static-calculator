@@ -7,11 +7,15 @@
 ## Project Aim:       
 **Build a working calculator, hosted on a static webpage, using HTML, CSS and vanilla JS.**     
 
-I have chosen this miniproject primarily to refresh my familiarity with frontend web development, particularly CSS - having spent a lot of time recently on pure JavaScript or Python coding practice, I wanted to avoid skills atrophy in areas such as styling and project disciplines.       
+I have chosen this miniproject primarily to refresh my familiarity with basic frontend web development, particularly CSS - having spent a lot of time recently on pure JavaScript or Python coding practice, I wanted to avoid skills atrophy in areas such as styling and project disciplines.       
+- _N.B.: Project later converted to TypeScript in order to consolidate learning in this area too!_     
 
 By chosing a static site, I have removed a lot of complexity in terms of hosting my project (thanks to GitHub Pages) - this will allow me to use my (sadly limited) time more efficiently.      
 
 Lastly, with the relatively simple choice of project, I am hoping to practice writing simple, clean code from beginning to end!     
+
+## Current issues to resolve/features to be added:          
+- _Sound loads very slowly on deployed version when on mobile_. Issue may be to do with limitations of GitHub pages and subsequent workarounds through using my `.github.io` repo to host script & sound files, or to inefficiencies in scripts. Possible resolution through pre-loading sound files upon opening / switch to 'daft mode'?        
 
 ## Project Progress:        
 16/01/23:        
@@ -101,7 +105,6 @@ _Two issues, fed back when progress shared_:
 05/02/23:       
 - Play faster functionality added, latest version deployed. Sound currently not playing in deployed version:        
 
-<img src="img/errors_grab.png" alt="image of console errors relating to sound playback issues" />
+<img src="img/errors_grab.png" alt="image of console errors relating to sound playback issues" />       
 
-## Bugs to resolve/features to add:     
-- Sounds not playing in deployed version.       
+- Issue resolved through relocating sound files to `hphilpotts.github.io/docs/` and updating respective path(s) in deployed version / deployment script.        
