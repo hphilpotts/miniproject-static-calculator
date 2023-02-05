@@ -213,17 +213,22 @@ const startDaftMode = (): void => {
     const soundInputs: string[] = ['work it', 'harder', 'make it', 'better', 'do it', 'faster', 'makes us', 'stronger', 'more than', 'ever', 'hour', 'after', 'our', 'work is', 'never', 'over'];
 
     const processDaftClick = (input: string): void => {
-        const specialDaftButtons: string[] = ['play', 'random', 'button3', 'stop'];
+        const specialDaftButtons: string[] = ['play', 'random', 'faster', 'stop'];
         if (specialDaftButtons.includes(input)) {
             switch (input) {
                 case ('play'):
                     console.log('play pressed');
-                    playAllSound();
+                    playAllSound(550);
                     break
                 case ('random'):
                     const randomSound: string = soundInputs[Math.floor(Math.random() * soundInputs.length)];
                     handleSound(randomSound);
-                    break;
+                    break
+                case ('faster'):
+                    playAllSound(390);
+                    break
+                default:
+                    null;
             }
         } else {
             handleSound(input);
@@ -235,17 +240,17 @@ const startDaftMode = (): void => {
         display.innerHTML = input;
         const audioFile: string = `/sounds/` + (input.replace(' ', '_') + '.wav');
         audioElement.setAttribute('src', audioFile);
-        audioElement.play();
+        audioElement.play().catch();
     }
 
-    async function playAllSound() {
+    async function playAllSound(delayLength: number){
         const delay = (ms: number) => new Promise (res => setTimeout(res, ms));
         let haltFunc = false;
         function halt() { haltFunc = true }''
         document.getElementById('stop').addEventListener('click', halt);
         for await (const soundInput of soundInputs) {
             if (haltFunc) return;
-            await delay(500);
+            await delay(delayLength);
             handleSound(soundInput);
             if (haltFunc) return;
         }

@@ -256,17 +256,22 @@ var startDaftMode = function () {
     daftButtons.forEach(function (button) { return button.addEventListener('click', handleDaftClick); });
     var soundInputs = ['work it', 'harder', 'make it', 'better', 'do it', 'faster', 'makes us', 'stronger', 'more than', 'ever', 'hour', 'after', 'our', 'work is', 'never', 'over'];
     var processDaftClick = function (input) {
-        var specialDaftButtons = ['play', 'random', 'button3', 'stop'];
+        var specialDaftButtons = ['play', 'random', 'faster', 'stop'];
         if (specialDaftButtons.includes(input)) {
             switch (input) {
                 case ('play'):
                     console.log('play pressed');
-                    playAllSound();
+                    playAllSound(550);
                     break;
                 case ('random'):
                     var randomSound = soundInputs[Math.floor(Math.random() * soundInputs.length)];
                     handleSound(randomSound);
                     break;
+                case ('faster'):
+                    playAllSound(390);
+                    break;
+                default:
+                    null;
             }
         }
         else {
@@ -278,9 +283,9 @@ var startDaftMode = function () {
         display.innerHTML = input;
         var audioFile = "/sounds/" + (input.replace(' ', '_') + '.wav');
         audioElement.setAttribute('src', audioFile);
-        audioElement.play();
+        audioElement.play().catch();
     };
-    function playAllSound() {
+    function playAllSound(delayLength) {
         var _a, e_1, _b, _c;
         return __awaiter(this, void 0, void 0, function () {
             function halt() { haltFunc = true; }
@@ -308,7 +313,7 @@ var startDaftMode = function () {
                         soundInput = _c;
                         if (haltFunc)
                             return [2 /*return*/];
-                        return [4 /*yield*/, delay(500)];
+                        return [4 /*yield*/, delay(delayLength)];
                     case 5:
                         _e.sent();
                         handleSound(soundInput);
