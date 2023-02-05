@@ -93,11 +93,15 @@ _Two issues, fed back when progress shared_:
 - JS logic added to handle change from regular modes to 'daft' mode, screen updates.        
 - Audio now plays. Next task is adding interesting functionality to upper buttons.      
 
-04/02/23"       
+04/02/23:       
 - Animation added to button presses.        
-- Adding play all functionality - initial issues found where previous `play()` interrupted immediately by next. Then, found that `forEach()` is not compatible with `async`.
+- Adding play all functionality - initial issues found where previous `play()` interrupted immediately by next. Then, found that `forEach()` is not compatible with `async`. Eventually rewritten using `for (..in...)` and working ok. `catch()` added to `audioElement.play()` within `handleSound()` in order to prevent repeated console errors from appearing where a sound being played is interrupted by the next.       
+- Random sound functionality added.     
+
+05/02/23:       
+- Play faster functionality added, latest version deployed. Sound currently not playing in deployed version:        
+
+<img src="img/errors_grab.png" alt="image of console errors relating to sound playback issues" />
 
 ## Bugs to resolve/features to add:     
-- Daft mode       
-- Sounds?       
-- Button press animation   
+- Sounds not playing in deployed version.       
