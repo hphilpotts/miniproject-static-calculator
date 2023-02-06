@@ -108,3 +108,7 @@ _Two issues, fed back when progress shared_:
 <img src="img/errors_grab.png" alt="image of console errors relating to sound playback issues" />       
 
 - Issue resolved through relocating sound files to `hphilpotts.github.io/docs/` and updating respective path(s) in deployed version / deployment script.        
+- New issue identified, however, where sounds load slowly when deployed version accessed via mobile. Issue may be due to either inefficiencies in code, or shortcomings in the workarounds used to deploy as a static site via GH pages.
+
+- Minor refactoring completed on daftmode script. Comments added to clarify process.        
+

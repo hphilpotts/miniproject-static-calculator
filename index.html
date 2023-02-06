@@ -5,20 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- this is the main stylesheet, setting styles used consistently across all display modes, remaining permanently active -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- this stylesheet changes depending on which mode button has been pressed (script changes the href attribute) -->
     <link id="current-stylesheet" rel="stylesheet" href="css/lightmode.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Iceland&display=swap" rel="stylesheet">
     <!-- trying out script in the head + use async as this is a 'more modern' way (cf. at bottom of body) -->
-    <script src="/js/mainRewrite.js" async></script>
+    <script src="/scripts/main.ts" async></script>
 </head>
 <body>
-    <div id="control-panel">
+    <div id="control-panel"> <!-- change display/functionality mode -->
         <div class="control-button" id="light-button">Light Mode</div>
         <div class="control-button" id="dark-button">Dark Mode</div>
         <div class="control-button" id="daft-button">Daft Mode</div>
     </div>
+    <!-- main div remains fixed -->
     <div id="calculator-outer">
         <div class="flex-c color-grey" id="screen-outer">
             <div class="flex-c" id="screen-upper">
@@ -28,9 +31,11 @@
                 <div id="solar-panel"></div>
             </div>
             <div id="screen-inner">
+                <!-- innerHTML of below div displays in calculator's 'screen' to represent value -->
                 <div id="screen-display"></div>
             </div>
         </div>
+        <!-- standard calculator div, inits as displayed -->
         <div class="flex-c color-grey" id="buttons-outer">
             <div id="buttons-inner">
                 <div class="button">
@@ -94,6 +99,7 @@
                     <div class="button-inner operator">=</div>
                 </div>
             </div>
+            <!-- daft mode specific div, inits to hidden -->
             <div id="buttons-inner-daft">
                 <div class="button">
                     <div class="daft-button-inner r0">play</div>
@@ -158,7 +164,9 @@
             </div>
         </div>
     </div>
+    <!-- placeholder audio tag, used in 'daftmode' to play sounds -->
     <audio src="" id="audio"></audio>
+    <!-- click sound plays when buttons pressed in standard calculator mode -->
     <audio src="/sounds/click.wav" id="click"></audio>
 </body>
 </html>

@@ -1,4 +1,4 @@
-// MAIN SCRIPT 2.0
+// MAIN SCRIPT 2.0: CALULATOR FUNCTIONALITY, MODE FUNCTIONALITY
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -56,7 +56,7 @@ var resetAll = function () {
 };
 // * -- Event listeners and handle button click:
 var buttons = document.querySelectorAll(".button-inner");
-var click = document.getElementById('click');
+var click = document.getElementById('click'); // ! currently seeing issue with deployed version via mobile browsers 
 click.volume = 0.3; // setting in JS as no volume attribute supported by browsers
 // Get button innerHTML string, pass this as input to processButtonPress:
 function handleClick() {
@@ -165,6 +165,7 @@ var binaryOperatorPress = function (binaryPressed) {
 var equalsPress = function () {
     var operand1 = +leftNum, operand2 = null;
     if (leftNum && currentOperator && currentRightNum) {
+        // * in this section and similar section above in binaryOperatorPress, the multiple assignment statements represent the passing of values from one global variable to another as calculations are completed. It seems a bit unwieldy but I feel it is the clearest way of showing what is happening
         operand2 = +currentRightNum;
         leftNum = performBinaryOperation(operand1, currentOperator, operand2);
         prevOperator = currentOperator;
@@ -221,70 +222,85 @@ var setDisplay = function (numberAsString) {
     display.innerText = displayValue;
 };
 var clearDisplay = function () { return display.innerText = ''; };
-// * -- Change Modes:
+// * * MODE FUNCTIONALITY:
+// Allow changes between different modes: light mode, dark mode, 'daft' mode. Light mode and dark mode being self-explanatory, daft mode changes calculator into a 'Daft Punk' soundboard. (n.b. - currently seeing issues with sound playback when deployed version accessed on mobile.)
+// 'daft' mode sections:
+// - setDaftMode
+// - startDaftMode
+// click event listener & handle click function
+// processDaftClick
+// handleSound
+// playAllSound
 var modeChangeButtons = document.getElementsByClassName('control-button');
 var styleSheet = document.getElementById('current-stylesheet');
-var currentStylesheet = styleSheet.getAttribute('href');
-// light mode:
+// * -- light mode:
 var setLightMode = function () {
     if (styleSheet.getAttribute('href') === 'css/daftmode.css')
         clearDisplay(); // clear display if daft mode previously selected
     styleSheet.setAttribute('href', 'css/lightmode.css');
 };
 modeChangeButtons[0].addEventListener('click', setLightMode);
-// dark mode:
+// * -- dark mode:
 var setDarkMode = function () {
     if (styleSheet.getAttribute('href') === 'css/daftmode.css')
         clearDisplay();
     styleSheet.setAttribute('href', 'css/nightmode.css');
 };
 modeChangeButtons[1].addEventListener('click', setDarkMode);
-// daft mode:
+// * -- daft mode:
+// sets display to 'daft mode', css file hides calculator buttons div and displays soundboard div before running `startDaftMode` function below:
 var setDaftMode = function () {
     styleSheet.setAttribute('href', 'css/daftmode.css');
     startDaftMode();
 };
 modeChangeButtons[2].addEventListener('click', setDaftMode);
+// runs in `setDaftMode` above, runs additional script to allow soundboard buttons to function:
 var startDaftMode = function () {
-    clearDisplay();
-    resetAll();
+    clearDisplay(); // remove any value displayed from when used as calculator
+    resetAll(); // clear all global variables - preventing inputs from 'persisting' from one calculator session to another.
+    // click event listener for soundboard buttons and handle click function, innerHTML passed to `processDaftClick` below:
     var daftButtons = document.querySelectorAll(".daft-button-inner");
     function handleDaftClick() {
-        var daftButtonPress = this.innerHTML;
-        processDaftClick(daftButtonPress);
+        var daftButtonPress = this.innerHTML; // get innerHTML to pass as string in function below:
+        processDaftClick(daftButtonPress); // see section below
     }
     daftButtons.forEach(function (button) { return button.addEventListener('click', handleDaftClick); });
-    var soundInputs = ['work it', 'harder', 'make it', 'better', 'do it', 'faster', 'makes us', 'stronger', 'more than', 'ever', 'hour', 'after', 'our', 'work is', 'never', 'over'];
+    // take innerHTML from button press and process accordingly:
     var processDaftClick = function (input) {
-        var specialDaftButtons = ['play', 'random', 'faster', 'stop'];
-        if (specialDaftButtons.includes(input)) {
+        var specialDaftButtons = ['play', 'random', 'faster', 'stop']; // 'special buttons' from top row have specific functions
+        if (specialDaftButtons.includes(input)) { // if a special button, select functionality to be used:
             switch (input) {
                 case ('play'):
-                    console.log('play pressed');
-                    playAllSound(550);
+                    playAllSound(550); // see below - iterates over soundInputs (array mirroring all non-special button innerHTML values), in effect simulating user pressing all buttons in order. Param is the delay in ms between playing the next sound
                     break;
-                case ('random'):
+                case ('random'): // play sound at random.
                     var randomSound = soundInputs[Math.floor(Math.random() * soundInputs.length)];
                     handleSound(randomSound);
                     break;
                 case ('faster'):
-                    playAllSound(390);
+                    playAllSound(390); // as play above, but with a shorter delay between sounds.
                     break;
                 default:
+                    // stop pressed, no special functionality required unless playAllSounds running - see halt() within playAllSounds below
                     null;
             }
         }
-        else {
+        else { // non special buttons handled as per handleSound function below:
             handleSound(input);
         }
     };
+    // handle a non-special button press / simulate a non-special button press when called in `playAllSound` below:
     var handleSound = function (input) {
-        var audioElement = document.getElementById('audio');
-        display.innerHTML = input;
-        var audioFile = "/sounds/" + (input.replace(' ', '_') + '.wav');
+        var audioElement = document.getElementById('audio'); // select placeholder empty audio element from index.html and save
+        display.innerHTML = input; // set 'calculator' display screen to reflect button that has been pressed
+        var audioFile = "/sounds/" + (input.replace(' ', '_') + '.wav'); // build a path to feed into <audio> tag's src attribute
         audioElement.setAttribute('src', audioFile);
         audioElement.play().catch();
+        // empty catch prevents mutiple console errors triggered when audio play in progress is interrupted by another
     };
+    // soundInputs used for playAllSound below - array mirrors the innerHTML values from all special buttons in L-R, T-B order.
+    var soundInputs = ['work it', 'harder', 'make it', 'better', 'do it', 'faster', 'makes us', 'stronger', 'more than', 'ever', 'hour', 'after', 'our', 'work is', 'never', 'over'];
+    // plays all sounds with a delay between each set using delayLength parameter in ms
     function playAllSound(delayLength) {
         var _a, e_1, _b, _c;
         return __awaiter(this, void 0, void 0, function () {
@@ -295,7 +311,7 @@ var startDaftMode = function () {
                     case 0:
                         delay = function (ms) { return new Promise(function (res) { return setTimeout(res, ms); }); };
                         haltFunc = false;
-                        '';
+                        ; // when haltFunc changed to true stop running (see returns below)
                         document.getElementById('stop').addEventListener('click', halt);
                         _e.label = 1;
                     case 1:
@@ -312,13 +328,13 @@ var startDaftMode = function () {
                         _e.trys.push([4, , 6, 7]);
                         soundInput = _c;
                         if (haltFunc)
-                            return [2 /*return*/];
+                            return [2 /*return*/]; // return halts function (accessed when stop button pressed)
                         return [4 /*yield*/, delay(delayLength)];
                     case 5:
                         _e.sent();
                         handleSound(soundInput);
                         if (haltFunc)
-                            return [2 /*return*/];
+                            return [2 /*return*/]; // as above, placed other side of delay to minimise gap between stop being pressed and function halting
                         return [3 /*break*/, 7];
                     case 6:
                         _d = true;
@@ -347,4 +363,4 @@ var startDaftMode = function () {
         });
     }
 };
-//# sourceMappingURL=mainRewrite.js.map
+//# sourceMappingURL=main.js.map

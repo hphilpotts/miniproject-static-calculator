@@ -1,4 +1,14 @@
-// MAIN SCRIPT 2.0
+// MAIN SCRIPT 2.0: CALULATOR FUNCTIONALITY, MODE FUNCTIONALITY
+
+// * * CALCULATOR FUNCTIONALITY
+
+    // Perform calculator operations and update display accordingly.
+    // see sections for:
+        // - Global variables
+        // - Event listeners and handle button click
+        // - Processing button presses
+        // - Update display
+
 
 // * -- Global variables:
 type GlobalVariable = string | null;
@@ -17,7 +27,7 @@ const resetAll = ():void => { // Full reset of all Global variables to null
 
 const buttons = document.querySelectorAll(".button-inner");
 
-const click = <HTMLAudioElement> document.getElementById('click');
+const click = <HTMLAudioElement> document.getElementById('click'); // ! currently seeing issue with deployed version via mobile browsers 
 click.volume = 0.3; // setting in JS as no volume attribute supported by browsers
 
 // Get button innerHTML string, pass this as input to processButtonPress:
@@ -118,6 +128,7 @@ const binaryOperatorPress = (binaryPressed: string): void => {
 const equalsPress = (): void => {
     let operand1: number = +leftNum, operand2: number = null;
     if (leftNum && currentOperator && currentRightNum) {
+        // * in this section and similar section above in binaryOperatorPress, the multiple assignment statements represent the passing of values from one global variable to another as calculations are completed. It seems a bit unwieldy but I feel it is the clearest way of showing what is happening
         operand2 = +currentRightNum;
         leftNum = performBinaryOperation(operand1, currentOperator, operand2);
         prevOperator =  currentOperator;
@@ -152,6 +163,7 @@ const cancel = (): void => {
     clearDisplay();
 };
 
+
 // * -- Update Display:
 
 const display: HTMLElement = document.getElementById('screen-display');
@@ -169,92 +181,115 @@ const setDisplay = (numberAsString: string): void => {
 
 const clearDisplay = ():string => display.innerText = '';
 
-// * -- Change Modes:
+
+// * * MODE FUNCTIONALITY:
+
+    // Allow changes between different modes: light mode, dark mode, 'daft' mode. Light mode and dark mode being self-explanatory, daft mode changes calculator into a 'Daft Punk' soundboard. (n.b. - currently seeing issues with sound playback when deployed version accessed on mobile.)
+    // 'daft' mode sections:
+        // - setDaftMode
+        // - startDaftMode
+            // click event listener & handle click function
+            // processDaftClick
+            // handleSound
+            // playAllSound
+
 
 const modeChangeButtons: HTMLCollection = document.getElementsByClassName('control-button');
 const styleSheet: HTMLElement = document.getElementById('current-stylesheet');
-let currentStylesheet: string = styleSheet.getAttribute('href');
 
-// light mode:
-const setLightMode = (): void => {
+
+// * -- light mode:
+
+const setLightMode = (): void => { // sets display mode to 'light mode', retains inputs if changing from dark mode
     if (styleSheet.getAttribute('href') === 'css/daftmode.css') clearDisplay(); // clear display if daft mode previously selected
     styleSheet.setAttribute('href', 'css/lightmode.css');
 }
 
 modeChangeButtons[0].addEventListener('click', setLightMode);
 
-// dark mode:
-const setDarkMode = (): void => {
+
+// * -- dark mode:
+
+const setDarkMode = (): void => { // sets to 'dark mode', retaining calculations from light mode
     if (styleSheet.getAttribute('href') === 'css/daftmode.css') clearDisplay();
     styleSheet.setAttribute('href', 'css/nightmode.css');
 }
 
 modeChangeButtons[1].addEventListener('click', setDarkMode);
 
-// daft mode:
+
+// * -- daft mode:
+
+// sets display to 'daft mode', css file hides calculator buttons div and displays soundboard div before running `startDaftMode` function below:
 const setDaftMode = ():void => {
     styleSheet.setAttribute('href', 'css/daftmode.css');
     startDaftMode();
 }
-modeChangeButtons[2].addEventListener('click', setDaftMode)
+modeChangeButtons[2].addEventListener('click', setDaftMode);
 
+// runs in `setDaftMode` above, runs additional script to allow soundboard buttons to function:
 const startDaftMode = (): void => {
 
-    clearDisplay();
-    resetAll();
+    clearDisplay(); // remove any value displayed from when used as calculator
+    resetAll(); // clear all global variables - preventing inputs from 'persisting' from one calculator session to another.
 
-    const daftButtons = document.querySelectorAll(".daft-button-inner");
-    function handleDaftClick():void{
-        let daftButtonPress: string = this.innerHTML;
-        processDaftClick(daftButtonPress);
+    // click event listener for soundboard buttons and handle click function, innerHTML passed to `processDaftClick` below:
+    const daftButtons: NodeList = document.querySelectorAll(".daft-button-inner");
+    function handleDaftClick(): void {
+        let daftButtonPress: string = this.innerHTML; // get innerHTML to pass as string in function below:
+        processDaftClick(daftButtonPress);  // see section below
     }
     daftButtons.forEach(button => button.addEventListener('click', handleDaftClick));
 
-    const soundInputs: string[] = ['work it', 'harder', 'make it', 'better', 'do it', 'faster', 'makes us', 'stronger', 'more than', 'ever', 'hour', 'after', 'our', 'work is', 'never', 'over'];
-
+    // take innerHTML from button press and process accordingly:
     const processDaftClick = (input: string): void => {
-        const specialDaftButtons: string[] = ['play', 'random', 'faster', 'stop'];
-        if (specialDaftButtons.includes(input)) {
+        const specialDaftButtons: string[] = ['play', 'random', 'faster', 'stop']; // 'special buttons' from top row have specific functions
+        if (specialDaftButtons.includes(input)) { // if a special button, select functionality to be used:
             switch (input) {
                 case ('play'):
-                    console.log('play pressed');
-                    playAllSound(550);
+                    playAllSound(550); // see below - iterates over soundInputs (array mirroring all non-special button innerHTML values), in effect simulating user pressing all buttons in order. Param is the delay in ms between playing the next sound
                     break
-                case ('random'):
+                case ('random'): // play sound at random.
                     const randomSound: string = soundInputs[Math.floor(Math.random() * soundInputs.length)];
-                    handleSound(randomSound);
+                    handleSound(randomSound); 
                     break
                 case ('faster'):
-                    playAllSound(390);
+                    playAllSound(390); // as play above, but with a shorter delay between sounds.
                     break
                 default:
+                    // stop pressed, no special functionality required unless playAllSounds running - see halt() within playAllSounds below
                     null;
             }
-        } else {
+        } else { // non special buttons handled as per handleSound function below:
             handleSound(input);
         }
     }
 
-    const handleSound = (input: string): void => {
-        const audioElement = <HTMLAudioElement> document.getElementById('audio')
-        display.innerHTML = input;
-        const audioFile: string = `/sounds/` + (input.replace(' ', '_') + '.wav');
-        audioElement.setAttribute('src', audioFile);
-        audioElement.play().catch();
+    // handle a non-special button press / simulate a non-special button press when called in `playAllSound` below:
+    const handleSound = (input: string): void => { // input is the innerHTML of the button pressed, or a string from soundInputs below
+        const audioElement = <HTMLAudioElement> document.getElementById('audio') // select placeholder empty audio element from index.html and save
+        display.innerHTML = input; // set 'calculator' display screen to reflect button that has been pressed
+        const audioFile: string = `/sounds/` + (input.replace(' ', '_') + '.wav'); // build a path to feed into <audio> tag's src attribute
+        audioElement.setAttribute('src', audioFile); 
+        audioElement.play().catch(); 
+            // empty catch prevents mutiple console errors triggered when audio play in progress is interrupted by another
     }
 
-    async function playAllSound(delayLength: number){
-        const delay = (ms: number) => new Promise (res => setTimeout(res, ms));
-        let haltFunc = false;
-        function halt() { haltFunc = true }''
+    // soundInputs used for playAllSound below - array mirrors the innerHTML values from all special buttons in L-R, T-B order.
+    const soundInputs: string[] = ['work it', 'harder', 'make it', 'better', 'do it', 'faster', 'makes us', 'stronger', 'more than', 'ever', 'hour', 'after', 'our', 'work is', 'never', 'over'];
+
+    // plays all sounds with a delay between each set using delayLength parameter in ms
+    async function playAllSound(delayLength: number){ // async required in order to implement delay (else all sounds are played nearly instantly!)
+        const delay = (ms: number): Promise<unknown> => new Promise ((res: never) => setTimeout(res, ms)); // delay implemented using Promise constructor, timeout set in ms
+        let haltFunc: boolean = false; // unless true function will continue to run 
+        function halt(): void { haltFunc = true }; // when haltFunc changed to true stop running (see returns below)
         document.getElementById('stop').addEventListener('click', halt);
         for await (const soundInput of soundInputs) {
-            if (haltFunc) return;
+            if (haltFunc) return; // return halts function (accessed when stop button pressed)
             await delay(delayLength);
             handleSound(soundInput);
-            if (haltFunc) return;
+            if (haltFunc) return; // as above, placed other side of delay to minimise gap between stop being pressed and function halting
         }
     }
-
 }
 
