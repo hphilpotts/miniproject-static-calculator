@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- this is the main stylesheet, setting styles used consistently across all display modes, remaining permanently active -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- this stylesheet changes depending on which mode button has been pressed (script changes the href attribute) -->
     <link id="current-stylesheet" rel="stylesheet" href="css/lightmode.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,11 +16,12 @@
     <script src="/docs/calculatorMiniproject.js" async></script>
 </head>
 <body>
-    <div id="control-panel">
+    <div id="control-panel"> <!-- change display/functionality mode -->
         <div class="control-button" id="light-button">Light Mode</div>
         <div class="control-button" id="dark-button">Dark Mode</div>
         <div class="control-button" id="daft-button">Daft Mode</div>
     </div>
+    <!-- main div remains fixed -->
     <div id="calculator-outer">
         <div class="flex-c color-grey" id="screen-outer">
             <div class="flex-c" id="screen-upper">
@@ -28,9 +31,11 @@
                 <div id="solar-panel"></div>
             </div>
             <div id="screen-inner">
+                <!-- innerHTML of below div displays in calculator's 'screen' to represent value -->
                 <div id="screen-display"></div>
             </div>
         </div>
+        <!-- standard calculator div, inits as displayed -->
         <div class="flex-c color-grey" id="buttons-outer">
             <div id="buttons-inner">
                 <div class="button">
@@ -94,6 +99,7 @@
                     <div class="button-inner operator">=</div>
                 </div>
             </div>
+            <!-- daft mode specific div, inits to hidden -->
             <div id="buttons-inner-daft">
                 <div class="button">
                     <div class="daft-button-inner r0">play</div>
@@ -158,7 +164,25 @@
             </div>
         </div>
     </div>
-    <audio src="" id="audio"></audio>
+    <div id="daft-audio"><!-- soundboard audio tags -->
+        <audio src="/docs/after.wav" id="after"></audio>
+        <audio src="/docs/better.wav" id="better"></audio>
+        <audio src="/docs/do_it.wav" id="do_it"></audio>
+        <audio src="/docs/ever.wav" id="ever"></audio>
+        <audio src="/docs/faster.wav" id="faster"></audio>
+        <audio src="/docs/harder.wav" id="harder"></audio>
+        <audio src="/docs/hour.wav" id="hour"></audio>
+        <audio src="/docs/make_it.wav" id="make_it"></audio>
+        <audio src="/docs/makes_us.wav" id="makes_us"></audio>
+        <audio src="/docs/more_than.wav" id="more_than"></audio>
+        <audio src="/docs/never.wav" id="never"></audio>
+        <audio src="/docs/our.wav" id="our"></audio>
+        <audio src="/docs/over.wav" id="over"></audio>
+        <audio src="/docs/stronger.wav" id="stronger"></audio>
+        <audio src="/docs/work_is.wav" id="work_is"></audio>
+        <audio src="/docs/work_it.wav" id="work_it"></audio>
+    </div>
+    <!-- click sound plays when buttons pressed in standard calculator mode -->
     <audio src="/docs/click.wav" id="click"></audio>
 </body>
 </html>
