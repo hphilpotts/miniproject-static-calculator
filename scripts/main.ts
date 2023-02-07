@@ -28,6 +28,7 @@ const resetAll = ():void => { // Full reset of all Global variables to null
 const buttons = document.querySelectorAll(".button-inner");
 
 const click = <HTMLAudioElement> document.getElementById('click'); // ! currently seeing issue with deployed version via mobile browsers 
+click.preload = "auto";
 click.volume = 0.3; // setting in JS as no volume attribute supported by browsers
 
 // Get button innerHTML string, pass this as input to processButtonPress:
@@ -230,6 +231,11 @@ modeChangeButtons[2].addEventListener('click', setDaftMode);
 // runs in `setDaftMode` above, runs additional script to allow soundboard buttons to function:
 const startDaftMode = (): void => {
 
+    // select and preload all daft audio sound elements when daft mode started:
+        // * attempting to speed up audio load / play times on mobile...
+    const daftAudio: HTMLCollectionOf<HTMLAudioElement> = document.getElementById('daft-audio').getElementsByTagName('audio');
+    for (let i: number = 0; i < daftAudio.length; i++) { daftAudio[i].preload = "auto" };
+
     clearDisplay(); // remove any value displayed from when used as calculator
     resetAll(); // clear all global variables - preventing inputs from 'persisting' from one calculator session to another.
 
@@ -267,10 +273,9 @@ const startDaftMode = (): void => {
 
     // handle a non-special button press / simulate a non-special button press when called in `playAllSound` below:
     const handleSound = (input: string): void => { // input is the innerHTML of the button pressed, or a string from soundInputs below
-        const audioElement = <HTMLAudioElement> document.getElementById('audio') // select placeholder empty audio element from index.html and save
+        const audioID: string = input.replace(' ', '_');
+        const audioElement = <HTMLAudioElement> document.getElementById(audioID) // select correct element
         display.innerHTML = input; // set 'calculator' display screen to reflect button that has been pressed
-        const audioFile: string = `/sounds/` + (input.replace(' ', '_') + '.wav'); // build a path to feed into <audio> tag's src attribute
-        audioElement.setAttribute('src', audioFile); 
         audioElement.play().catch(); 
             // empty catch prevents mutiple console errors triggered when audio play in progress is interrupted by another
     }

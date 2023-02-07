@@ -57,6 +57,7 @@ var resetAll = function () {
 // * -- Event listeners and handle button click:
 var buttons = document.querySelectorAll(".button-inner");
 var click = document.getElementById('click'); // ! currently seeing issue with deployed version via mobile browsers 
+click.preload = "auto";
 click.volume = 0.3; // setting in JS as no volume attribute supported by browsers
 // Get button innerHTML string, pass this as input to processButtonPress:
 function handleClick() {
@@ -256,6 +257,13 @@ var setDaftMode = function () {
 modeChangeButtons[2].addEventListener('click', setDaftMode);
 // runs in `setDaftMode` above, runs additional script to allow soundboard buttons to function:
 var startDaftMode = function () {
+    // select and preload all daft audio sound elements when daft mode started:
+    // * attempting to speed up audio load / play times on mobile...
+    var daftAudio = document.getElementById('daft-audio').getElementsByTagName('audio');
+    for (var i = 0; i < daftAudio.length; i++) {
+        daftAudio[i].preload = "auto";
+    }
+    ;
     clearDisplay(); // remove any value displayed from when used as calculator
     resetAll(); // clear all global variables - preventing inputs from 'persisting' from one calculator session to another.
     // click event listener for soundboard buttons and handle click function, innerHTML passed to `processDaftClick` below:
@@ -291,10 +299,9 @@ var startDaftMode = function () {
     };
     // handle a non-special button press / simulate a non-special button press when called in `playAllSound` below:
     var handleSound = function (input) {
-        var audioElement = document.getElementById('audio'); // select placeholder empty audio element from index.html and save
+        var audioID = input.replace(' ', '_');
+        var audioElement = document.getElementById(audioID); // select correct element
         display.innerHTML = input; // set 'calculator' display screen to reflect button that has been pressed
-        var audioFile = "/sounds/" + (input.replace(' ', '_') + '.wav'); // build a path to feed into <audio> tag's src attribute
-        audioElement.setAttribute('src', audioFile);
         audioElement.play().catch();
         // empty catch prevents mutiple console errors triggered when audio play in progress is interrupted by another
     };

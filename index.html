@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Iceland&display=swap" rel="stylesheet">
     <!-- trying out script in the head + use async as this is a 'more modern' way (cf. at bottom of body) -->
-    <script src="/scripts/main.ts" async></script>
+    <script src="/scripts/main.js" async></script>
 </head>
 <body>
     <div id="control-panel"> <!-- change display/functionality mode -->
@@ -164,8 +164,24 @@
             </div>
         </div>
     </div>
-    <!-- placeholder audio tag, used in 'daftmode' to play sounds -->
-    <audio src="" id="audio"></audio>
+    <div id="daft-audio"><!-- soundboard audio tags -->
+        <audio src="/sounds/after.wav" id="after"></audio>
+        <audio src="/sounds/better.wav" id="better"></audio>
+        <audio src="/sounds/do_it.wav" id="do_it"></audio>
+        <audio src="/sounds/ever.wav" id="ever"></audio>
+        <audio src="/sounds/faster.wav" id="faster"></audio>
+        <audio src="/sounds/harder.wav" id="harder"></audio>
+        <audio src="/sounds/hour.wav" id="hour"></audio>
+        <audio src="/sounds/make_it.wav" id="make_it"></audio>
+        <audio src="/sounds/makes_us.wav" id="makes_us"></audio>
+        <audio src="/sounds/more_than.wav" id="more_than"></audio>
+        <audio src="/sounds/never.wav" id="never"></audio>
+        <audio src="/sounds/our.wav" id="our"></audio>
+        <audio src="/sounds/over.wav" id="over"></audio>
+        <audio src="/sounds/stronger.wav" id="stronger"></audio>
+        <audio src="/sounds/work_is.wav" id="work_is"></audio>
+        <audio src="/sounds/work_it.wav" id="work_it"></audio>
+    </div>
     <!-- click sound plays when buttons pressed in standard calculator mode -->
     <audio src="/sounds/click.wav" id="click"></audio>
 </body>
