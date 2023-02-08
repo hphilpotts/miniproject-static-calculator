@@ -1,43 +1,51 @@
-# Miniproject: static webpage calculator        
+# Mini-project: static webpage calculator        
 
-## [Deployment Link](https://hphilpotts.github.io/miniproject-static-calculator/)       
-
-<img src="img/screengrab.png" alt="screenshot of simple web calculator"/>
+### Deployed via GitHub pages [here](https://hphilpotts.github.io/miniproject-static-calculator/).         
+---       
 
 ## Project Aim:       
 **Build a working calculator, hosted on a static webpage, using HTML, CSS and vanilla JS.**     
 
-I have chosen this miniproject primarily to refresh my familiarity with basic frontend web development, particularly CSS - having spent a lot of time recently on pure JavaScript or Python coding practice, I wanted to avoid skills atrophy in areas such as styling and project disciplines.       
+I have chosen this mini-project primarily to refresh my familiarity with basic frontend web development, particularly CSS - having spent a lot of time recently on pure JavaScript or Python coding practice, I wanted to avoid skills atrophy in areas such as styling and project disciplines.       
 - _N.B.: Project later converted to TypeScript in order to consolidate learning in this area too!_     
 
-By chosing a static site, I have removed a lot of complexity in terms of hosting my project (thanks to GitHub Pages) - this will allow me to use my (sadly limited) time more efficiently.      
+By choosing a static site, I have removed a lot of complexity in terms of hosting my project (thanks to GitHub Pages) - this will allow me to use my (sadly limited) time more efficiently.      
 
-Lastly, with the relatively simple choice of project, I am hoping to practice writing simple, clean code from beginning to end!     
+Lastly, with the relatively simple choice of project, I am hoping to practise writing simple, clean code from beginning to end!   
+
+<p align="center">
+    <img src="img/screengrab2.png" alt="screen grab of light and dark mode side-by-side" width="600">
+</p>
 
 ## Current issues to resolve/features to be added:          
-- _Sound loads very slowly on deployed version when on mobile_. Issue may be to do with limitations of GitHub pages and subsequent workarounds through using my `.github.io` repo to host script & sound files, or to inefficiencies in scripts. Possible resolution through pre-loading sound files upon opening / switch to 'daft mode'?        
+- _Sound loads very slowly on deployed version when on mobile_. Issue may be to do with limitations of GitHub pages and subsequent workarounds through using my `github.io` repo to host script & sound files, or to inefficiencies in scripts. Possible resolution through pre-loading sound files upon opening / switch to 'daft mode'?        
+- Further digging 08/02/23 suggests issue lies with [preload not being enabled with Safari on iOS](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/AudioandVideoTagBasics/AudioandVideoTagBasics.html#//apple_ref/doc/uid/TP40009523-CH2-SW9).      
 
 ## Project Progress:        
 16/01/23:        
 - Initial commit made: I had to look up quite a lot of CSS positioning in order to get going (!) but I am happy with how the outer calculator resizes on various screens.       
-- Further structure added: logo, solar panel, margins - mostly achieved through flexbox. Re-visting CSS Grid tutorials next as this will be perfect for buttons!     
+- Further structure added: logo, solar panel, margins - mostly achieved through flexbox. Revisting CSS Grid tutorials next as this will be perfect for buttons!     
 - Buttons added: used grid to quickly add 20 buttons arranged 4x5, then used table/table-cell to horizontally and vertically centre buttons. Additional styling added such as drab calculator colours for buttons etc.      
-- Getting the screen to display: this now fills from the right like a calculator. I've set font size relative to VH with 13 seeming to be around the 'magic number' (_it was actually 12 in the end!_). Not sure if this is a great way of doing it but seemed to work nicely!     
+- Getting the screen to display: this now fills from the right like a calculator. I've set `font-size` relative to `VH` with 13 seeming to be around the 'magic number' (_it was actually 12 in the end!_). Not sure if this is a great way of doing it but seemed to work nicely!     
 
 - I've now shifted onto the JS. Event listeners added for all buttons, I have decided to use each button's `.innerHTML` property in order to handle clicks.     
 - Display now updates when numeric buttons are pressed and wipes when equals is pressed.        
-- All button presses now handled by `processButtonPress`. Cancel function added. Some tweaks required where global variables needed to be changed - otherwise I was seeing values persisting even after '=' or 'C' were pressed.      
+- All button presses now handled by `processButtonPress`. Cancel function added. Some tweaks required where global variables needed to be changed - otherwise I was seeing values persisting even after **=** or **C** were pressed.      
 - `processButtonPress` refactored into a switch statement :)        
 - Basic calculator functionality now added. Using loads of `console.log`s in order to keep track of how global variables are being changed!     
 
 
 17/01/23:       
-- Now that I'm largely happy with basic functionality, I'm going to have a shot at deploying this. Took quite a few attempts to correctly place and then in turn locate the required .js file from my hphilpotts.github.io repo, as well as to choose the correct deployment.       
-- After a bit of trial end error, and with the use of a separate `deployment` branch, I have been able to get this hosted as a static site via GH Pages. Happy days!        
-- Only had a small amount of time to work on this today: the next jobs are to finish completing all functionalites, refactor code, and tweak formatting!        
+- Now that I'm largely happy with basic functionality, I'm going to have a shot at deploying this. Took quite a few attempts to correctly place and then in turn locate the required `.js` file from my `hphilpotts.github.io` repo, as well as to choose the correct deployment.       
+- After a bit of trial end error, and with the use of a separate **deployment** branch, I have been able to get this hosted as a static site via GH Pages. Happy days!        
+- Only had a small amount of time to work on this today: the next jobs are to finish completing all functionalities, refactor code, and tweak formatting!        
 
 19/01/23:       
 - Formatting updates: display `font-size` now `12vh`. General formatting - updates to colours, shadows etc.     
+
+<p align="center">
+    <img src="img/screengrab.png" alt="screenshot of simple web calculator" width="300"/>
+</p>
 
 20/01/23:       
 - Changed display font, added update to `main.js` that prevents display from overlapping screen.        
@@ -75,9 +83,9 @@ _Two issues, fed back when progress shared_:
 - _This is exactly why I want to learn testing...!_     
 
 27/01/23:       
-- After discovering a major issue yesterday (i.e. the calculator can't do maths) I've decided to rewrite my main.js file from the ground up. I feel I had overcomplicated things as I fixed bugs and added functionality, so will go back to basics - albeit with a clearer idea of how I want the logic to run.        
+- After discovering a major issue yesterday (i.e. the calculator can't do maths) I've decided to rewrite my `main.js` file from the ground up. I feel I had overcomplicated things as I fixed bugs and added functionality, so will go back to basics - albeit with a clearer idea of how I want the logic to run.        
 - Rewrite proceeding reasonably well: consecutive binary operations / equals presses or combinations of the two are working.        
-- Further functionality added - odd combinations of operators now work. '+/-' now working as well. Refactoring time, I think!                
+- Further functionality added - odd combinations of operators now work. **+/-** now working as well. Refactoring time, I think!                
 
 30/01/23:       
 - Continued refactoring, then resolving issues created as a result of refactoring.      
@@ -91,7 +99,7 @@ _Two issues, fed back when progress shared_:
 - Tried adding haptic feedback upon button press but ran into issues - found out from articles that Safari does not support this.       
 
 02/02/23:       
-- Starting work on 'daft' mode: basic html structure added, intially `display: none`.       
+- Starting work on 'daft' mode: basic html structure added, initially `display: none`.       
 
 03/02/23:       
 - JS logic added to handle change from regular modes to 'daft' mode, screen updates.        
@@ -100,15 +108,18 @@ _Two issues, fed back when progress shared_:
 04/02/23:       
 - Animation added to button presses.        
 - Adding play all functionality - initial issues found where previous `play()` interrupted immediately by next. Then, found that `forEach()` is not compatible with `async`. Eventually rewritten using `for (..in...)` and working ok. `catch()` added to `audioElement.play()` within `handleSound()` in order to prevent repeated console errors from appearing where a sound being played is interrupted by the next.       
-- Random sound functionality added.     
+- Play random sound functionality added.     
 
 05/02/23:       
 - Play faster functionality added, latest version deployed. Sound currently not playing in deployed version:        
 
-<img src="img/errors_grab.png" alt="image of console errors relating to sound playback issues" />       
+<p align="center">
+    <img src="img/errors_grab.png" alt="image of console errors relating to sound playback issues" />       
+</p>
 
 - Issue resolved through relocating sound files to `hphilpotts.github.io/docs/` and updating respective path(s) in deployed version / deployment script.        
 - New issue identified, however, where sounds load slowly when deployed version accessed via mobile. Issue may be due to either inefficiencies in code, or shortcomings in the workarounds used to deploy as a static site via GH pages.
 
 - Minor refactoring completed on daftmode script. Comments added to clarify process.        
 
+---     
